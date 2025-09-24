@@ -102,6 +102,53 @@ const Products = () => {
         </Button>
       </div>
 
+      {/* Stats Summary */}
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-primary">
+              {products.length}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Всего объявлений
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-green-600">
+              {products.filter(p => p.status === 'active').length}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Активных
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600">
+              {products.filter(p => p.status === 'sold').length}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Продано
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-orange-600">
+              {products.reduce((sum, p) => sum + p.views, 0)}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Всего просмотров
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Filters and Search */}
       <Card className="bg-card-gradient border-border/50">
         <CardContent className="p-4">
@@ -195,52 +242,6 @@ const Products = () => {
         ))}
       </div>
 
-      {/* Stats Summary */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
-              {products.length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Всего объявлений
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-green-600">
-              {products.filter(p => p.status === 'active').length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Активных
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-blue-600">
-              {products.filter(p => p.status === 'sold').length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Продано
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-orange-600">
-              {products.reduce((sum, p) => sum + p.views, 0)}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Всего просмотров
-            </div>
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 };
