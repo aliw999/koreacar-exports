@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Globe, TrendingUp, Shield } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import heroImage from '@/assets/hero-korean-cars.jpg';
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-muted/30 to-primary/5">
       {/* Background Pattern */}
@@ -65,6 +68,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 className="bg-hero-gradient hover:shadow-glow transition-all duration-300 text-lg px-8 py-6"
+                onClick={() => navigate('/auth/register')}
               >
                 Начать продавать бесплатно
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -74,6 +78,10 @@ const Hero = () => {
                 size="lg" 
                 variant="outline" 
                 className="text-lg px-8 py-6 border-primary/30 hover:bg-primary/5"
+                onClick={() => {
+                  // Scroll to features section or show demo modal
+                  document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 Смотреть демо
               </Button>

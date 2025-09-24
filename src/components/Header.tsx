@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X, Car } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navigation = [
     { name: 'Возможности', href: '#features' },
@@ -41,10 +43,17 @@ const Header = () => {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" className="transition-smooth">
+            <Button 
+              variant="ghost" 
+              className="transition-smooth"
+              onClick={() => navigate('/auth/login')}
+            >
               Войти
             </Button>
-            <Button className="bg-hero-gradient hover:shadow-glow transition-all duration-300">
+            <Button 
+              className="bg-hero-gradient hover:shadow-glow transition-all duration-300"
+              onClick={() => navigate('/auth/register')}
+            >
               Начать продавать
             </Button>
           </div>
@@ -73,10 +82,17 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex flex-col space-y-2 px-3 pt-4">
-                <Button variant="ghost" className="justify-start">
+                <Button 
+                  variant="ghost" 
+                  className="justify-start"
+                  onClick={() => navigate('/auth/login')}
+                >
                   Войти
                 </Button>
-                <Button className="bg-hero-gradient justify-start">
+                <Button 
+                  className="bg-hero-gradient justify-start"
+                  onClick={() => navigate('/auth/register')}
+                >
                   Начать продавать
                 </Button>
               </div>
