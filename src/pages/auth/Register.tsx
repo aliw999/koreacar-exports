@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -42,6 +44,8 @@ const Register = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const form = useForm<RegisterForm>({
     resolver: zodResolver(registerSchema),
@@ -62,13 +66,54 @@ const Register = () => {
   const onSubmit = async (data: RegisterForm) => {
     setIsLoading(true);
     try {
-      console.log('Registration data:', data);
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      // On success, redirect to onboarding or dashboard
-      // navigate('/onboarding');
+      // Create account with Supabase Auth
+      const { error } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/`,
+          data: {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            phone: data.phone,
+            company_name: data.companyName,
+            company_type: data.companyType,
+            country: data.country,
+          }
+        }
+      });
+
+      if (error) {
+        if (error.message.includes('already registered')) {
+          toast({
+            title: "Аккаунт уже существует",
+            description: "Пользователь с таким email уже зарегистрирован. Попробуйте войти в систему.",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Ошибка регистрации",
+            description: error.message,
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      toast({
+        title: "Регистрация успешна!",
+        description: "Проверьте email для подтверждения аккаунта",
+      });
+
+      // Navigate to login page
+      navigate('/auth/login');
     } catch (error) {
       console.error('Registration error:', error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла неожиданная ошибка. Попробуйте еще раз.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }

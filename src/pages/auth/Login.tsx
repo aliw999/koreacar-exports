@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
@@ -21,6 +23,8 @@ type LoginForm = z.infer<typeof loginSchema>;
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const { toast } = useToast();
 
   const form = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
@@ -34,14 +38,42 @@ const Login = () => {
   const onSubmit = async (data: LoginForm) => {
     setIsLoading(true);
     try {
-      // Here we would make API call to authenticate
-      console.log('Login data:', data);
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      // On success, redirect to dashboard
-      // navigate('/dashboard');
+      const { error } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (error) {
+        if (error.message.includes('Invalid login credentials')) {
+          toast({
+            title: "Неверные данные",
+            description: "Проверьте правильность email и пароля",
+            variant: "destructive",
+          });
+        } else {
+          toast({
+            title: "Ошибка входа",
+            description: error.message,
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      toast({
+        title: "Добро пожаловать!",
+        description: "Вы успешно вошли в систему",
+      });
+
+      // Navigate to dashboard
+      navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
+      toast({
+        title: "Ошибка",
+        description: "Произошла неожиданная ошибка. Попробуйте еще раз.",
+        variant: "destructive",
+      });
     } finally {
       setIsLoading(false);
     }
