@@ -114,24 +114,21 @@ export function DashboardSidebar() {
   };
 
   const getNavClass = (path: string) => {
-    const baseClass = "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200";
-    if (isActive(path)) {
-      return `${baseClass} bg-sidebar-accent text-sidebar-accent-foreground font-medium`;
-    }
-    return `${baseClass} text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground`;
+    const baseClass = "w-full justify-start";
+    return baseClass;
   };
 
   const renderMenuItems = (items: typeof navigationItems) => (
-    <SidebarMenu>
+    <SidebarMenu className="space-y-1">
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
-          <SidebarMenuButton asChild>
+          <SidebarMenuButton asChild isActive={isActive(item.url)}>
             <NavLink to={item.url} className={getNavClass(item.url)}>
               <item.icon className="h-5 w-5 flex-shrink-0" />
               {!collapsed && (
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium">{item.title}</div>
-                  <div className="text-xs text-sidebar-foreground/60 leading-tight">
+                  <div className="font-medium text-sm">{item.title}</div>
+                  <div className="text-xs opacity-60 leading-tight">
                     {item.description}
                   </div>
                 </div>
@@ -148,10 +145,10 @@ export function DashboardSidebar() {
       className={collapsed ? "w-16" : "w-72"}
       collapsible="icon"
     >
-      <SidebarContent className="py-4">
+      <SidebarContent className="py-4 px-3 space-y-6">
         {/* Main Navigation */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-primary font-semibold mb-2">
+        <SidebarGroup className="space-y-2">
+          <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
             Основное
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -160,34 +157,40 @@ export function DashboardSidebar() {
         </SidebarGroup>
 
         {/* Communication */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-primary font-semibold mb-2">
-            Коммуникации
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            {renderMenuItems(communicationItems)}
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {!collapsed && (
+          <SidebarGroup className="space-y-2">
+            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
+              Коммуникации
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              {renderMenuItems(communicationItems)}
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
 
         {/* Business */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-primary font-semibold mb-2">
-            Бизнес
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            {renderMenuItems(businessItems)}
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {!collapsed && (
+          <SidebarGroup className="space-y-2">
+            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
+              Бизнес
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              {renderMenuItems(businessItems)}
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
 
         {/* System */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="text-sidebar-primary font-semibold mb-2">
-            Система
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            {renderMenuItems(systemItems)}
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {!collapsed && (
+          <SidebarGroup className="space-y-2">
+            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
+              Система
+            </SidebarGroupLabel>
+            <SidebarGroupContent>
+              {renderMenuItems(systemItems)}
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
     </Sidebar>
   );
