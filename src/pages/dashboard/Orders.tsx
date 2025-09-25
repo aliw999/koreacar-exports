@@ -3,6 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { 
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
+import { 
   ShoppingCart,
   Search,
   Filter,
@@ -13,8 +21,17 @@ import {
   Clock,
   CheckCircle,
   AlertCircle,
-  Package
+  Package,
+  Eye,
+  MessageCircle,
+  MoreHorizontal
 } from 'lucide-react';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Orders = () => {
   const orders = [
@@ -203,76 +220,123 @@ const Orders = () => {
         </CardContent>
       </Card>
 
-      {/* Orders List */}
-      <div className="space-y-4">
-        {orders.map((order) => (
-          <Card key={order.id} className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-                {/* Order Info */}
-                <div className="space-y-3 flex-1">
-                  <div className="flex items-start gap-3">
-                    {getStatusIcon(order.status)}
-                    <div>
-                      <div className="flex items-center gap-3 mb-1">
-                        <h3 className="font-semibold text-lg">Заказ {order.id}</h3>
-                        {getStatusBadge(order.status)}
-                        {getPaymentBadge(order.paymentStatus)}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        {order.vehicleMake} {order.vehicleModel} {order.vehicleYear}
-                      </p>
-                      <p className="text-xl font-bold text-primary">
-                        ${order.price.toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Customer Info */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <User className="h-4 w-4 text-muted-foreground" />
-                      <span>{order.customerName}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Phone className="h-4 w-4 text-muted-foreground" />
-                      <span>{order.customerPhone}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4 text-muted-foreground" />
-                      <span>{order.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Dates */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <span>Заказ: {order.orderDate}</span>
-                    </div>
-                    {order.deliveryDate && (
+      {/* Orders Table */}
+      <Card className="bg-card-gradient border-border/50">
+        <CardHeader>
+          <CardTitle>Список заказов</CardTitle>
+          <CardDescription>
+            Управление заказами и отслеживание статусов
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="rounded-md border overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Заказ</TableHead>
+                  <TableHead>Клиент</TableHead>
+                  <TableHead>Автомобиль</TableHead>
+                  <TableHead>Цена</TableHead>
+                  <TableHead>Статус</TableHead>
+                  <TableHead>Оплата</TableHead>
+                  <TableHead>Дата заказа</TableHead>
+                  <TableHead>Доставка</TableHead>
+                  <TableHead>Город</TableHead>
+                  <TableHead className="w-[100px]">Действия</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {orders.map((order) => (
+                  <TableRow key={order.id} className="hover:bg-muted/50 cursor-pointer">
+                    <TableCell>
                       <div className="flex items-center gap-2">
-                        <Calendar className="h-4 w-4 text-muted-foreground" />
-                        <span>Доставка: {order.deliveryDate}</span>
+                        {getStatusIcon(order.status)}
+                        <div>
+                          <div className="font-medium">{order.id}</div>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex flex-col gap-2 lg:ml-4">
-                  <Button size="sm" variant="outline">
-                    Детали заказа
-                  </Button>
-                  <Button size="sm">
-                    Связаться с клиентом
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="space-y-1">
+                        <div className="font-medium">{order.customerName}</div>
+                        <div className="text-sm text-muted-foreground">{order.customerPhone}</div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="space-y-1">
+                        <div className="font-medium">{order.vehicleMake} {order.vehicleModel}</div>
+                        <div className="text-sm text-muted-foreground">{order.vehicleYear} год</div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="font-semibold text-primary">
+                        ${order.price.toLocaleString()}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      {getStatusBadge(order.status)}
+                    </TableCell>
+                    <TableCell>
+                      {getPaymentBadge(order.paymentStatus)}
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm">{order.orderDate}</div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm">
+                        {order.deliveryDate || "—"}
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="text-sm">{order.location}</div>
+                    </TableCell>
+                    <TableCell>
+                      <div className="flex items-center gap-1">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="h-8 w-8 p-0"
+                        >
+                          <MessageCircle className="h-4 w-4" />
+                        </Button>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0"
+                            >
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              Изменить статус
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              Скачать документы
+                            </DropdownMenuItem>
+                            <DropdownMenuItem className="text-destructive">
+                              Отменить заказ
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
