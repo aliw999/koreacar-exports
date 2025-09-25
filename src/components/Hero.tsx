@@ -25,9 +25,9 @@ const Hero = () => {
               </Badge>
               
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="gradient-text">Продавайте</span> корейские 
+                <span className="gradient-text">Продавайте</span> автомобили 
                 <br />
-                автомобили по всему миру
+                по всему миру
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
