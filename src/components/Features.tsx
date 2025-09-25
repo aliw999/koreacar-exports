@@ -16,11 +16,6 @@ const Features = () => {
     title: "Безопасные платежи",
     description: "Оплата производится сразу через контрагента в Корее, эскроу-сервис, защита от мошенничества",
     gradient: "from-purple-500 to-purple-600"
-  }, {
-    icon: <BarChart3 className="h-8 w-8" />,
-    title: "Аналитика продаж",
-    description: "Отслеживание просмотров, конверсии, ROI и статистики по регионам",
-    gradient: "from-orange-500 to-orange-600"
   }];
   return <section id="features" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +29,7 @@ const Features = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => <Card key={index} className="group hover:shadow-large transition-all duration-300 border-border/50 hover:border-primary/30 bg-card-gradient">
               <CardContent className="p-6 text-center">
                 <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
