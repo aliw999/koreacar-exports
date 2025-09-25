@@ -170,77 +170,104 @@ const Products = () => {
         </CardContent>
       </Card>
 
-      {/* Products Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <Card key={product.id} className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
-            <div className="aspect-video bg-muted rounded-t-lg relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/20" />
-              <div className="absolute top-3 right-3">
-                {getStatusBadge(product.status)}
-              </div>
-              <div className="absolute bottom-3 left-3 right-3">
-                <h3 className="text-white font-semibold text-lg">
-                  {product.make} {product.model}
-                </h3>
-                <p className="text-white/90 text-sm">{product.year} год</p>
-              </div>
-            </div>
-            
-            <CardContent className="p-4">
-              <div className="flex justify-between items-center mb-3">
-                <div className="text-2xl font-bold text-primary">
-                  ${product.price.toLocaleString()}
-                </div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="sm">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="bg-popover">
-                    <DropdownMenuItem>
-                      <Eye className="mr-2 h-4 w-4" />
-                      Просмотреть
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                      <Edit className="mr-2 h-4 w-4" />
-                      Редактировать
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem className="text-destructive">
-                      <Trash2 className="mr-2 h-4 w-4" />
-                      Удалить
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4 text-sm text-muted-foreground mb-4">
-                <div className="flex items-center gap-1">
-                  <Eye className="h-4 w-4" />
-                  {product.views} просмотров
-                </div>
-                <div className="flex items-center gap-1">
-                  <MessageSquare className="h-4 w-4" />
-                  {product.inquiries} запросов
-                </div>
-              </div>
-              
-              <div className="flex gap-2">
-                <Button size="sm" variant="outline" className="flex-1">
-                  <Edit className="mr-1 h-3 w-3" />
-                  Изменить
-                </Button>
-                <Button size="sm" className="flex-1">
-                  <Eye className="mr-1 h-3 w-3" />
-                  Детали
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {/* Products Table */}
+      <Card className="bg-card-gradient border-border/50">
+        <CardContent className="p-0">
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-border/50">
+                  <th className="text-left p-4 font-medium text-muted-foreground">Автомобиль</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Год</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Цена</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Статус</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Просмотры</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Запросы</th>
+                  <th className="text-left p-4 font-medium text-muted-foreground">Дата создания</th>
+                  <th className="text-right p-4 font-medium text-muted-foreground">Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                {products.map((product) => (
+                  <tr key={product.id} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                    <td className="p-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-16 h-12 bg-muted rounded-lg flex items-center justify-center">
+                          <Car className="h-6 w-6 text-muted-foreground" />
+                        </div>
+                        <div>
+                          <div className="font-medium text-foreground">
+                            {product.make} {product.model}
+                          </div>
+                          <div className="text-sm text-muted-foreground">
+                            ID: {product.id}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4 text-foreground">{product.year}</td>
+                    <td className="p-4">
+                      <div className="font-semibold text-primary text-lg">
+                        ${product.price.toLocaleString()}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      {getStatusBadge(product.status)}
+                    </td>
+                    <td className="p-4 text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Eye className="h-4 w-4" />
+                        {product.views}
+                      </div>
+                    </td>
+                    <td className="p-4 text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <MessageSquare className="h-4 w-4" />
+                        {product.inquiries}
+                      </div>
+                    </td>
+                    <td className="p-4 text-muted-foreground text-sm">
+                      {new Date(product.created).toLocaleDateString('ru-RU')}
+                    </td>
+                    <td className="p-4">
+                      <div className="flex items-center justify-end gap-2">
+                        <Button variant="ghost" size="sm">
+                          <Eye className="h-4 w-4" />
+                        </Button>
+                        <Button variant="ghost" size="sm">
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="sm">
+                              <MoreHorizontal className="h-4 w-4" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuItem>
+                              <Eye className="mr-2 h-4 w-4" />
+                              Просмотреть
+                            </DropdownMenuItem>
+                            <DropdownMenuItem>
+                              <Edit className="mr-2 h-4 w-4" />
+                              Редактировать
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem className="text-destructive">
+                              <Trash2 className="mr-2 h-4 w-4" />
+                              Удалить
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
 
     </div>
   );
