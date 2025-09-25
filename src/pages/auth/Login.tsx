@@ -89,7 +89,7 @@ const Login = () => {
               <Car className="h-8 w-8 text-white" />
             </div>
             <span className="text-2xl font-bold gradient-text">
-              KoreanAuto Export
+              Net Cars
             </span>
           </div>
           <p className="text-muted-foreground">

@@ -49,11 +49,11 @@ const Footer = () => {
                   <Car className="h-6 w-6 text-white" />
                 </div>
                 <span className="text-xl font-bold">
-                  KoreanAuto Export
+                  Net Cars
                 </span>
               </div>
               <p className="text-background/70 mb-6 leading-relaxed">
-                Ведущая B2B платформа для экспорта корейских автомобилей. 
+                Ведущая B2B платформа для экспорта автомобилей. 
                 Помогаем дилерам успешно продавать по всему миру с 2019 года.
               </p>
               
@@ -61,7 +61,7 @@ const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-center text-background/70">
                   <Mail className="h-4 w-4 mr-3" />
-                  <span>support@koreanauto.export</span>
+                  <span>support@netcars.export</span>
                 </div>
                 <div className="flex items-center text-background/70">
                   <Phone className="h-4 w-4 mr-3" />
@@ -69,7 +69,7 @@ const Footer = () => {
                 </div>
                 <div className="flex items-center text-background/70">
                   <MapPin className="h-4 w-4 mr-3" />
-                  <span>Seoul, South Korea</span>
+                  <span>Dubai, UAE</span>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@ const Footer = () => {
         <div className="border-t border-background/20 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <div className="text-background/70 text-sm">
-              © 2024 KoreanAuto Export. Все права защищены.
+              © 2024 Net Cars. Все права защищены.
             </div>
             
             {/* Social Links */}

@@ -21,7 +21,7 @@ const Hero = () => {
                 variant="secondary" 
                 className="px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20"
               >
-                🚗 Лидер экспорта корейских автомобилей
+                🚗 Лидер экспорта автомобилей
               </Badge>
               
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
@@ -31,7 +31,7 @@ const Hero = () => {
               </h1>
               
               <p className="text-xl text-muted-foreground leading-relaxed max-w-2xl">
-                Профессиональная платформа для экспорта автомобилей из Южной Кореи 
+                Профессиональная платформа для экспорта автомобилей 
                 в страны СНГ и не только. Увеличьте продажи с нашей B2B системой.
               </p>
             </div>
@@ -80,7 +80,7 @@ const Hero = () => {
             <div className="relative rounded-2xl overflow-hidden shadow-large">
               <img
                 src={heroImage}
-                alt="Корейские автомобили готовые к экспорту в порту"
+                alt="Автомобили готовые к экспорту в порту"
                 className="w-full h-[600px] object-cover"
               />
               {/* Floating Stats */}
