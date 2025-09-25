@@ -7,7 +7,7 @@ import {
   TrendingUp, 
   Users, 
   Plus,
-  Eye,
+  Bell,
   MessageSquare,
   Clock,
   CheckCircle,
@@ -18,285 +18,220 @@ import {
 const Dashboard = () => {
   // Mock data - in real app this would come from API
   const stats = {
-    activeListings: 23,
-    totalViews: 1247,
-    newInquiries: 8,
-    completedDeals: 15,
+    totalRevenue: 2450000,
+    monthlyGrowth: 12.5,
+    totalSales: 156,
+    activeBuyers: 48,
   };
 
-  const recentActivity = [
+  const quickActions = [
     {
-      type: 'inquiry',
-      message: 'Новый запрос на Hyundai Sonata 2023',
-      time: '2 часа назад',
-      icon: <MessageSquare className="h-4 w-4" />,
-      color: 'text-blue-500'
+      title: 'Добавить автомобиль',
+      description: 'Создать новое объявление',
+      icon: <Car className="h-6 w-6" />,
+      color: 'bg-blue-500',
+      action: 'create-listing'
     },
     {
-      type: 'view',
-      message: 'Просмотр объявления Kia Sportage',
-      time: '4 часа назад',
-      icon: <Eye className="h-4 w-4" />,
-      color: 'text-green-500'
+      title: 'Просмотреть заказы',
+      description: 'Управление заказами',
+      icon: <ShoppingCart className="h-6 w-6" />,
+      color: 'bg-green-500',
+      action: 'view-orders'
     },
     {
-      type: 'completion',
-      message: 'Сделка по Genesis G90 завершена',
-      time: '1 день назад',
-      icon: <CheckCircle className="h-4 w-4" />,
-      color: 'text-emerald-500'
+      title: 'Сообщения',
+      description: 'Чат с покупателями',
+      icon: <MessageSquare className="h-6 w-6" />,
+      color: 'bg-purple-500',
+      action: 'messages'
     },
     {
-      type: 'alert',
-      message: 'Требуется обновление документов',
-      time: '2 дня назад',
-      icon: <AlertCircle className="h-4 w-4" />,
-      color: 'text-orange-500'
+      title: 'Аналитика',
+      description: 'Отчеты и статистика',
+      icon: <BarChart3 className="h-6 w-6" />,
+      color: 'bg-orange-500',
+      action: 'analytics'
     },
   ];
 
-  const topListings = [
+  const notifications = [
     {
-      id: 1,
-      make: 'Hyundai',
-      model: 'Sonata',
-      year: 2023,
-      price: 35000,
-      views: 156,
-      inquiries: 12,
-      status: 'active'
+      type: 'success',
+      title: 'Новый заказ',
+      message: 'Hyundai Sonata 2023 - заказ от покупателя из Казахстана',
+      time: '15 мин назад',
+      icon: <CheckCircle className="h-5 w-5" />
     },
     {
-      id: 2,
-      make: 'Kia',
-      model: 'Sportage',
-      year: 2023,
-      price: 32000,
-      views: 134,
-      inquiries: 8,
-      status: 'active'
+      type: 'info', 
+      title: 'Запрос информации',
+      message: 'Потенциальный покупатель запросил дополнительные фото Genesis G90',
+      time: '1 час назад',
+      icon: <MessageSquare className="h-5 w-5" />
     },
     {
-      id: 3,
-      make: 'Genesis',
-      model: 'G90',
-      year: 2023,
-      price: 65000,
-      views: 98,
-      inquiries: 15,
-      status: 'sold'
+      type: 'warning',
+      title: 'Требуется действие',
+      message: 'Обновите документы для Kia Sportage до завтрашнего дня',
+      time: '3 часа назад',
+      icon: <AlertCircle className="h-5 w-5" />
     },
   ];
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold text-foreground">Дашборд</h1>
-          <p className="text-muted-foreground">
-            Добро пожаловать в ваш B2B кабинет дилера
-          </p>
+      {/* Welcome Header */}
+      <div className="bg-hero-gradient rounded-2xl p-6 text-white">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold mb-2">
+              Добро пожаловать в Net Cars!
+            </h1>
+            <p className="text-white/90 text-lg">
+              Управляйте своим автомобильным бизнесом эффективно
+            </p>
+          </div>
+          <div className="hidden lg:block">
+            <div className="text-right">
+              <div className="text-2xl font-bold">₽{stats.totalRevenue.toLocaleString()}</div>
+              <div className="text-white/80 text-sm">Общая выручка</div>
+            </div>
+          </div>
         </div>
-        <Button className="bg-hero-gradient hover:shadow-glow">
-          <Plus className="mr-2 h-4 w-4" />
-          Новое объявление
-        </Button>
       </div>
 
-      {/* Quick Stats */}
+      {/* Key Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Активные объявления
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <TrendingUp className="h-4 w-4" />
+              Общая выручка
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                <Car className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold">{stats.activeListings}</div>
-                <p className="text-xs text-muted-foreground">+2 за неделю</p>
-              </div>
-            </div>
+            <div className="text-2xl font-bold">₽{stats.totalRevenue.toLocaleString()}</div>
+            <p className="text-xs text-green-600 flex items-center gap-1">
+              <TrendingUp className="h-3 w-3" />
+              +{stats.monthlyGrowth}% за месяц
+            </p>
           </CardContent>
         </Card>
 
         <Card className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Всего просмотров
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <Car className="h-4 w-4" />
+              Продажи за месяц
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
-                <Eye className="h-6 w-6 text-green-600 dark:text-green-400" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold">{stats.totalViews.toLocaleString()}</div>
-                <p className="text-xs text-muted-foreground">+12% за месяц</p>
-              </div>
-            </div>
+            <div className="text-2xl font-bold">{stats.totalSales}</div>
+            <p className="text-xs text-muted-foreground">Автомобилей продано</p>
           </CardContent>
         </Card>
 
         <Card className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Новые запросы
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              Активные покупатели
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="p-2 bg-orange-100 dark:bg-orange-900/20 rounded-lg">
-                <MessageSquare className="h-6 w-6 text-orange-600 dark:text-orange-400" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold">{stats.newInquiries}</div>
-                <p className="text-xs text-muted-foreground">За последние 7 дней</p>
-              </div>
-            </div>
+            <div className="text-2xl font-bold">{stats.activeBuyers}</div>
+            <p className="text-xs text-muted-foreground">В этом месяце</p>
           </CardContent>
         </Card>
 
         <Card className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
           <CardHeader className="pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Завершенные сделки
+            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <Clock className="h-4 w-4" />
+              Средн. время сделки
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex items-center gap-4">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-                <TrendingUp className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <div>
-                <div className="text-2xl font-bold">{stats.completedDeals}</div>
-                <p className="text-xs text-muted-foreground">За этот месяц</p>
-              </div>
-            </div>
+            <div className="text-2xl font-bold">14 дней</div>
+            <p className="text-xs text-muted-foreground">От запроса до продажи</p>
           </CardContent>
         </Card>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
-        {/* Recent Activity */}
-        <div className="lg:col-span-2">
-          <Card className="bg-card-gradient border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5" />
-                Последняя активность
-              </CardTitle>
-              <CardDescription>
-                Обзор последних событий по вашим объявлениям
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {recentActivity.map((activity, index) => (
-                  <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/30 transition-colors">
-                    <div className={`p-1 rounded ${activity.color}`}>
-                      {activity.icon}
+      <div className="grid lg:grid-cols-2 gap-8">
+        {/* Quick Actions */}
+        <Card className="bg-card-gradient border-border/50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Plus className="h-5 w-5" />
+              Быстрые действия
+            </CardTitle>
+            <CardDescription>
+              Основные операции для управления бизнесом
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 gap-4">
+              {quickActions.map((action, index) => (
+                <div key={index} className="group cursor-pointer">
+                  <div className="flex flex-col items-center p-4 rounded-lg border border-border/30 hover:border-primary/50 hover:bg-muted/30 transition-all duration-300">
+                    <div className={`p-3 rounded-full ${action.color} text-white mb-3 group-hover:scale-110 transition-transform duration-300`}>
+                      {action.icon}
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground">
-                        {activity.message}
-                      </p>
-                      <p className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {activity.time}
-                      </p>
-                    </div>
+                    <h3 className="font-semibold text-sm text-center mb-1">
+                      {action.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground text-center">
+                      {action.description}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-        {/* Top Performing Listings */}
-        <div>
-          <Card className="bg-card-gradient border-border/50">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <TrendingUp className="h-5 w-5" />
-                Топ объявлений
-              </CardTitle>
-              <CardDescription>
-                Самые популярные автомобили
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {topListings.map((listing, index) => (
-                  <div key={listing.id} className="flex items-center gap-3 p-3 rounded-lg border border-border/30">
-                    <div className="flex-shrink-0 text-sm font-bold text-muted-foreground">
-                      #{index + 1}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-foreground">
-                        {listing.make} {listing.model} {listing.year}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        ${listing.price.toLocaleString()}
-                      </p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-muted-foreground">
-                          👁 {listing.views}
-                        </span>
-                        <span className="text-xs text-muted-foreground">
-                          💬 {listing.inquiries}
-                        </span>
-                        <Badge 
-                          variant={listing.status === 'sold' ? 'default' : 'secondary'}
-                          className="text-xs"
-                        >
-                          {listing.status === 'sold' ? 'Продано' : 'Активно'}
-                        </Badge>
-                      </div>
-                    </div>
+        {/* Recent Notifications */}
+        <Card className="bg-card-gradient border-border/50">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Bell className="h-5 w-5" />
+              Последние уведомления
+            </CardTitle>
+            <CardDescription>
+              Важные события и обновления
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {notifications.map((notification, index) => (
+                <div key={index} className="flex items-start gap-3 p-3 rounded-lg hover:bg-muted/30 transition-colors">
+                  <div className={`p-1 rounded ${
+                    notification.type === 'success' ? 'text-green-600' :
+                    notification.type === 'warning' ? 'text-orange-600' : 
+                    'text-blue-600'
+                  }`}>
+                    {notification.icon}
                   </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-foreground">
+                      {notification.title}
+                    </p>
+                    <p className="text-xs text-muted-foreground mb-1">
+                      {notification.message}
+                    </p>
+                    <p className="text-xs text-muted-foreground flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {notification.time}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
-
-      {/* Quick Actions */}
-      <Card className="bg-hero-gradient text-white">
-        <CardHeader>
-          <CardTitle>Быстрые действия</CardTitle>
-          <CardDescription className="text-white/80">
-            Управляйте своим бизнесом более эффективно
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Button variant="secondary" className="h-auto p-4 flex-col gap-2">
-              <Car className="h-6 w-6" />
-              <span className="text-sm">Создать объявление</span>
-            </Button>
-            <Button variant="secondary" className="h-auto p-4 flex-col gap-2">
-              <ShoppingCart className="h-6 w-6" />
-              <span className="text-sm">Просмотреть заказы</span>
-            </Button>
-            <Button variant="secondary" className="h-auto p-4 flex-col gap-2">
-              <Users className="h-6 w-6" />
-              <span className="text-sm">Связаться с покупателями</span>
-            </Button>
-            <Button variant="secondary" className="h-auto p-4 flex-col gap-2">
-              <BarChart3 className="h-6 w-6" />
-              <span className="text-sm">Посмотреть аналитику</span>
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };

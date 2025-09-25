@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   BarChart3,
@@ -8,8 +7,6 @@ import {
   CreditCard,
   Settings,
   Home,
-  Package,
-  TrendingUp,
   Users,
   FileText,
   HelpCircle,
@@ -24,7 +21,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 
@@ -101,8 +97,6 @@ const systemItems = [
 ];
 
 export function DashboardSidebar() {
-  const { state } = useSidebar();
-  const collapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -113,26 +107,14 @@ export function DashboardSidebar() {
     return currentPath.startsWith(path);
   };
 
-  const getNavClass = (path: string) => {
-    const baseClass = "w-full justify-start";
-    return baseClass;
-  };
-
   const renderMenuItems = (items: typeof navigationItems) => (
     <SidebarMenu className="space-y-1">
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild isActive={isActive(item.url)}>
-            <NavLink to={item.url} className={getNavClass(item.url)}>
-              <item.icon className="h-5 w-5 flex-shrink-0" />
-              {!collapsed && (
-                <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sm">{item.title}</div>
-                  <div className="text-xs opacity-60 leading-tight">
-                    {item.description}
-                  </div>
-                </div>
-              )}
+            <NavLink to={item.url}>
+              <item.icon className="h-4 w-4" />
+              <span>{item.title}</span>
             </NavLink>
           </SidebarMenuButton>
         </SidebarMenuItem>
@@ -141,56 +123,39 @@ export function DashboardSidebar() {
   );
 
   return (
-    <Sidebar
-      className={collapsed ? "w-16" : "w-72"}
-      collapsible="icon"
-    >
-      <SidebarContent className="py-4 px-3 space-y-6">
+    <Sidebar className="border-r">
+      <SidebarContent className="py-4">
         {/* Main Navigation */}
-        <SidebarGroup className="space-y-2">
-          <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
-            Основное
-          </SidebarGroupLabel>
+        <SidebarGroup>
+          <SidebarGroupLabel>Основное</SidebarGroupLabel>
           <SidebarGroupContent>
             {renderMenuItems(navigationItems)}
           </SidebarGroupContent>
         </SidebarGroup>
 
         {/* Communication */}
-        {!collapsed && (
-          <SidebarGroup className="space-y-2">
-            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
-              Коммуникации
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              {renderMenuItems(communicationItems)}
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
+        <SidebarGroup>
+          <SidebarGroupLabel>Коммуникации</SidebarGroupLabel>
+          <SidebarGroupContent>
+            {renderMenuItems(communicationItems)}
+          </SidebarGroupContent>
+        </SidebarGroup>
 
         {/* Business */}
-        {!collapsed && (
-          <SidebarGroup className="space-y-2">
-            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
-              Бизнес
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              {renderMenuItems(businessItems)}
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
+        <SidebarGroup>
+          <SidebarGroupLabel>Бизнес</SidebarGroupLabel>
+          <SidebarGroupContent>
+            {renderMenuItems(businessItems)}
+          </SidebarGroupContent>
+        </SidebarGroup>
 
         {/* System */}
-        {!collapsed && (
-          <SidebarGroup className="space-y-2">
-            <SidebarGroupLabel className="text-sidebar-primary font-semibold text-xs uppercase tracking-wide px-3">
-              Система
-            </SidebarGroupLabel>
-            <SidebarGroupContent>
-              {renderMenuItems(systemItems)}
-            </SidebarGroupContent>
-          </SidebarGroup>
-        )}
+        <SidebarGroup>
+          <SidebarGroupLabel>Система</SidebarGroupLabel>
+          <SidebarGroupContent>
+            {renderMenuItems(systemItems)}
+          </SidebarGroupContent>
+        </SidebarGroup>
       </SidebarContent>
     </Sidebar>
   );

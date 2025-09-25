@@ -23,19 +23,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-background">
+    <SidebarProvider defaultOpen={true}>
+      <div className="min-h-screen flex w-full">
         <DashboardSidebar />
         
         <div className="flex-1 flex flex-col min-w-0">
           {/* Header */}
-          <header className="h-16 border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50 flex-shrink-0">
-            <div className="flex items-center justify-between h-full px-4 lg:px-6">
+          <header className="h-14 border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-40">
+            <div className="flex items-center justify-between h-full px-4">
               <div className="flex items-center gap-4">
                 <SidebarTrigger className="hover:bg-muted p-2 rounded-md" />
                 <div className="hidden sm:block">
                   <h1 className="text-lg font-semibold text-foreground">
-                    NetCars B2B
+                    Net Cars
                   </h1>
                   <p className="text-xs text-muted-foreground">
                     Кабинет продавца
@@ -63,7 +63,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                       <span className="hidden sm:block">Профиль</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end" className="w-56 bg-popover z-50">
+                  <DropdownMenuContent align="end" className="w-56">
                     <DropdownMenuLabel>Мой аккаунт</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
@@ -86,10 +86,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </header>
 
           {/* Main Content */}
-          <main className="flex-1 overflow-y-auto bg-muted/30 p-4 lg:p-6">
-            <div className="max-w-full">
-              {children}
-            </div>
+          <main className="flex-1 p-4 lg:p-6 overflow-auto">
+            {children}
           </main>
         </div>
       </div>
