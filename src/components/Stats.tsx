@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { TrendingUp, Users, CheckCircle, Globe } from 'lucide-react';
-
 interface StatProps {
   icon: React.ReactNode;
   value: string;
   label: string;
   delay: number;
 }
-
-const AnimatedStat = ({ icon, value, label, delay }: StatProps) => {
+const AnimatedStat = ({
+  icon,
+  value,
+  label,
+  delay
+}: StatProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentValue, setCurrentValue] = useState('0');
-
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -22,7 +24,7 @@ const AnimatedStat = ({ icon, value, label, delay }: StatProps) => {
         const suffix = value.replace(numericValue, '');
         let current = 0;
         const increment = target / 30; // 30 frames for smooth animation
-        
+
         const animate = () => {
           current += increment;
           if (current < target) {
@@ -37,73 +39,34 @@ const AnimatedStat = ({ icon, value, label, delay }: StatProps) => {
         setCurrentValue(value);
       }
     }, delay);
-
     return () => clearTimeout(timer);
   }, [value, delay]);
-
-  return (
-    <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-      <div className="bg-hero-gradient w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-glow">
-        <div className="text-white">
-          {icon}
-        </div>
-      </div>
-      <div className="text-4xl font-bold text-foreground mb-2">
-        {currentValue}
-      </div>
-      <div className="text-muted-foreground font-medium">
-        {label}
-      </div>
-    </div>
-  );
+  return;
 };
-
 const Stats = () => {
-  const stats = [
-    {
-      icon: <TrendingUp className="h-8 w-8" />,
-      value: "2,500+",
-      label: "Проданных автомобилей"
-    },
-    {
-      icon: <CheckCircle className="h-8 w-8" />,
-      value: "85%",
-      label: "Успешных сделок"
-    },
-    {
-      icon: <Users className="h-8 w-8" />,
-      value: "24/7",
-      label: "Поддержка клиентов"
-    },
-    {
-      icon: <Globe className="h-8 w-8" />,
-      value: "12",
-      label: "Стран назначения"
-    }
-  ];
-
-  return (
-    <section className="py-20 bg-background">
+  const stats = [{
+    icon: <TrendingUp className="h-8 w-8" />,
+    value: "2,500+",
+    label: "Проданных автомобилей"
+  }, {
+    icon: <CheckCircle className="h-8 w-8" />,
+    value: "85%",
+    label: "Успешных сделок"
+  }, {
+    icon: <Users className="h-8 w-8" />,
+    value: "24/7",
+    label: "Поддержка клиентов"
+  }, {
+    icon: <Globe className="h-8 w-8" />,
+    value: "12",
+    label: "Стран назначения"
+  }];
+  return <section className="bg-background py-[38px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">
-            Наши результаты говорят сами за себя
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Более 5 лет успешной работы на рынке экспорта корейских автомобилей
-          </p>
-        </div>
+        
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {stats.map((stat, index) => (
-            <AnimatedStat
-              key={index}
-              icon={stat.icon}
-              value={stat.value}
-              label={stat.label}
-              delay={index * 200}
-            />
-          ))}
+          {stats.map((stat, index) => <AnimatedStat key={index} icon={stat.icon} value={stat.value} label={stat.label} delay={index * 200} />)}
         </div>
 
         {/* Success Stories Preview */}
@@ -157,8 +120,6 @@ const Stats = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Stats;
