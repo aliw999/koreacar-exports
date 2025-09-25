@@ -23,8 +23,7 @@ const Features = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Все возможности для вас</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Наша платформа предоставляет полный набор инструментов для 
-            продажи ваших автомобилей по миру
+            Наша платформа осуществляет экспорт и логистику "под ключ"
           </p>
         </div>
 
