@@ -4,7 +4,7 @@ const Features = () => {
   const features = [{
     icon: <Car className="h-8 w-8" />,
     title: "Управление объявлениями",
-    description: "Создавайте детальные объявления с фото 360°, техническими характеристиками и документами",
+    description: "Создавайте детальные объявления с фото, техническими характеристиками и документами",
     gradient: "from-blue-500 to-blue-600"
   }, {
     icon: <Ship className="h-8 w-8" />,
