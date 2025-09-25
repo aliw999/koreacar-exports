@@ -58,15 +58,15 @@ const communicationItems = [
     icon: MessageSquare,
     description: "Чат с покупателями"
   },
-  {
-    title: "Покупатели",
-    url: "/dashboard/customers",
-    icon: Users,
-    description: "База покупателей"
-  },
 ];
 
 const businessItems = [
+  {
+    title: "Сотрудники",
+    url: "/dashboard/employees",
+    icon: Users,
+    description: "Управление сотрудниками"
+  },
   {
     title: "Финансы",
     url: "/dashboard/financial",
