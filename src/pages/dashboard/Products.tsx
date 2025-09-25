@@ -2,6 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
 import { 
   Car, 
   Plus,
@@ -22,6 +23,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 const Products = () => {
+  const navigate = useNavigate();
   const products = [
     {
       id: 1,
@@ -189,7 +191,7 @@ const Products = () => {
               </thead>
               <tbody>
                 {products.map((product) => (
-                  <tr key={product.id} className="border-b border-border/30 hover:bg-muted/30 transition-colors">
+                  <tr key={product.id} className="border-b border-border/30 hover:bg-muted/30 transition-colors cursor-pointer" onClick={() => navigate(`/dashboard/products/${product.id}`)}>
                     <td className="p-4">
                       <div className="flex items-center gap-3">
                         <div className="w-16 h-12 bg-muted rounded-lg flex items-center justify-center">
@@ -231,24 +233,42 @@ const Products = () => {
                     </td>
                     <td className="p-4">
                       <div className="flex items-center justify-end gap-2">
-                        <Button variant="ghost" size="sm">
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/dashboard/products/${product.id}`);
+                          }}
+                        >
                           <Eye className="h-4 w-4" />
                         </Button>
-                        <Button variant="ghost" size="sm">
+                        <Button 
+                          variant="ghost" 
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/dashboard/products/${product.id}`);
+                          }}
+                        >
                           <Edit className="h-4 w-4" />
                         </Button>
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="sm">
+                            <Button 
+                              variant="ghost" 
+                              size="sm"
+                              onClick={(e) => e.stopPropagation()}
+                            >
                               <MoreHorizontal className="h-4 w-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
-                            <DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate(`/dashboard/products/${product.id}`)}>
                               <Eye className="mr-2 h-4 w-4" />
                               Просмотреть
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => navigate(`/dashboard/products/${product.id}`)}>
                               <Edit className="mr-2 h-4 w-4" />
                               Редактировать
                             </DropdownMenuItem>
