@@ -41,7 +41,19 @@ const AnimatedStat = ({
     }, delay);
     return () => clearTimeout(timer);
   }, [value, delay]);
-  return;
+  return (
+    <div className={`text-center transition-all duration-500 ${isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4'}`}>
+      <div className="flex justify-center text-primary mb-3">
+        {icon}
+      </div>
+      <div className="text-3xl lg:text-4xl font-bold text-foreground mb-2">
+        {currentValue}
+      </div>
+      <div className="text-muted-foreground text-sm lg:text-base">
+        {label}
+      </div>
+    </div>
+  );
 };
 const Stats = () => {
   const stats = [{

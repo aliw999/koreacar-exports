@@ -36,32 +36,6 @@ const Hero = () => {
               </p>
             </div>
 
-            {/* Key Benefits */}
-            <div className="grid sm:grid-cols-3 gap-4">
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-card-gradient shadow-soft border border-border/50">
-                <Globe className="h-8 w-8 text-primary" />
-                <div>
-                  <div className="font-semibold text-sm">500+ покупателей</div>
-                  <div className="text-xs text-muted-foreground">из 12 стран</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-card-gradient shadow-soft border border-border/50">
-                <TrendingUp className="h-8 w-8 text-success" />
-                <div>
-                  <div className="font-semibold text-sm">15-20% маржа</div>
-                  <div className="text-xs text-muted-foreground">с каждой продажи</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-3 p-4 rounded-lg bg-card-gradient shadow-soft border border-border/50">
-                <Shield className="h-8 w-8 text-accent" />
-                <div>
-                  <div className="font-semibold text-sm">Полная поддержка</div>
-                  <div className="text-xs text-muted-foreground">экспорта</div>
-                </div>
-              </div>
-            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
