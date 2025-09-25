@@ -29,7 +29,7 @@ const Features = () => {
           <h2 className="text-4xl font-bold mb-4">Все возможности для вас</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Наша платформа предоставляет полный набор инструментов для 
-            профессиональной торговли корейскими автомобилями
+            продажи ваших автомобилей по миру
           </p>
         </div>
 
