@@ -131,9 +131,9 @@ const Steps = () => {
         {/* CTA Section */}
         <div className="text-center mt-16">
           <div className="bg-hero-gradient rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              Готовы начать продавать корейские автомобили?
-            </h3>
+              <h3 className="text-2xl font-bold mb-4">
+                Готовы увеличить продажи автомобилей?
+              </h3>
             <p className="text-white/90 mb-6 max-w-2xl mx-auto">
               Присоединитесь к успешным дилерам, которые уже зарабатывают 
               на международном рынке корейских автомобилей
