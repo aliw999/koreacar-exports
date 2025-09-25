@@ -1,51 +1,32 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { 
-  Car, 
-  Ship, 
-  Shield, 
-  BarChart3,
-  Edit3,
-  Globe2,
-  DollarSign,
-  TrendingUp
-} from 'lucide-react';
-
+import { Car, Ship, Shield, BarChart3, Edit3, Globe2, DollarSign, TrendingUp } from 'lucide-react';
 const Features = () => {
-  const features = [
-    {
-      icon: <Car className="h-8 w-8" />,
-      title: "Управление объявлениями",
-      description: "Создавайте детальные объявления с фото 360°, техническими характеристиками и документами",
-      gradient: "from-blue-500 to-blue-600"
-    },
-    {
-      icon: <Ship className="h-8 w-8" />,
-      title: "Международная логистика",
-      description: "Калькулятор доставки, работа с портами, таможенное оформление",
-      gradient: "from-emerald-500 to-emerald-600"
-    },
-    {
-      icon: <Shield className="h-8 w-8" />,
-      title: "Безопасные платежи",
-      description: "Оплата производится сразу через контрагента в Корее, эскроу-сервис, защита от мошенничества",
-      gradient: "from-purple-500 to-purple-600"
-    },
-    {
-      icon: <BarChart3 className="h-8 w-8" />,
-      title: "Аналитика продаж",
-      description: "Отслеживание просмотров, конверсии, ROI и статистики по регионам",
-      gradient: "from-orange-500 to-orange-600"
-    }
-  ];
-
-  return (
-    <section id="features" className="py-24 bg-muted/30">
+  const features = [{
+    icon: <Car className="h-8 w-8" />,
+    title: "Управление объявлениями",
+    description: "Создавайте детальные объявления с фото 360°, техническими характеристиками и документами",
+    gradient: "from-blue-500 to-blue-600"
+  }, {
+    icon: <Ship className="h-8 w-8" />,
+    title: "Международная логистика",
+    description: "Калькулятор доставки, работа с портами, таможенное оформление",
+    gradient: "from-emerald-500 to-emerald-600"
+  }, {
+    icon: <Shield className="h-8 w-8" />,
+    title: "Безопасные платежи",
+    description: "Оплата производится сразу через контрагента в Корее, эскроу-сервис, защита от мошенничества",
+    gradient: "from-purple-500 to-purple-600"
+  }, {
+    icon: <BarChart3 className="h-8 w-8" />,
+    title: "Аналитика продаж",
+    description: "Отслеживание просмотров, конверсии, ROI и статистики по регионам",
+    gradient: "from-orange-500 to-orange-600"
+  }];
+  return <section id="features" className="py-24 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">
-            Все возможности для успешного экспорта
-          </h2>
+          <h2 className="text-4xl font-bold mb-4">Все возможности для вас</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Наша платформа предоставляет полный набор инструментов для 
             профессиональной торговли корейскими автомобилями
@@ -54,11 +35,7 @@ const Features = () => {
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => (
-            <Card 
-              key={index} 
-              className="group hover:shadow-large transition-all duration-300 border-border/50 hover:border-primary/30 bg-card-gradient"
-            >
+          {features.map((feature, index) => <Card key={index} className="group hover:shadow-large transition-all duration-300 border-border/50 hover:border-primary/30 bg-card-gradient">
               <CardContent className="p-6 text-center">
                 <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300 shadow-medium`}>
                   {feature.icon}
@@ -70,8 +47,7 @@ const Features = () => {
                   {feature.description}
                 </p>
               </CardContent>
-            </Card>
-          ))}
+            </Card>)}
         </div>
 
         {/* Additional Benefits Section */}
@@ -115,8 +91,6 @@ const Features = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Features;
