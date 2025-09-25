@@ -11,6 +11,7 @@ import Overview from "./pages/dashboard/Overview";
 import Products from "./pages/dashboard/Products";
 import ProductDetail from "./pages/dashboard/ProductDetail";
 import Orders from "./pages/dashboard/Orders";
+import OrderDetail from "./pages/dashboard/OrderDetail";
 import Analytics from "./pages/dashboard/Analytics";
 import Messages from "./pages/dashboard/Messages";
 import Settings from "./pages/dashboard/Settings";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/dashboard/products" element={<DashboardLayout><Products /></DashboardLayout>} />
           <Route path="/dashboard/products/:id" element={<DashboardLayout><ProductDetail /></DashboardLayout>} />
           <Route path="/dashboard/orders" element={<DashboardLayout><Orders /></DashboardLayout>} />
+          <Route path="/dashboard/orders/:id" element={<DashboardLayout><OrderDetail /></DashboardLayout>} />
           <Route path="/dashboard/analytics" element={<DashboardLayout><Analytics /></DashboardLayout>} />
           <Route path="/dashboard/messages" element={<DashboardLayout><Messages /></DashboardLayout>} />
           <Route path="/dashboard/employees" element={<DashboardLayout><Employees /></DashboardLayout>} />

@@ -32,8 +32,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from 'react-router-dom';
 
 const Orders = () => {
+  const navigate = useNavigate();
   const orders = [
     {
       id: "ORD-001",
@@ -247,7 +249,11 @@ const Orders = () => {
               </TableHeader>
               <TableBody>
                 {orders.map((order) => (
-                  <TableRow key={order.id} className="hover:bg-muted/50 cursor-pointer">
+                  <TableRow 
+                    key={order.id} 
+                    className="hover:bg-muted/50 cursor-pointer"
+                    onClick={() => navigate(`/dashboard/orders/${order.id}`)}
+                  >
                     <TableCell>
                       <div className="flex items-center gap-2">
                         {getStatusIcon(order.status)}
