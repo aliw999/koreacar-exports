@@ -8,7 +8,6 @@ import {
   Settings,
   Home,
   Users,
-  FileText,
   HelpCircle,
 } from "lucide-react";
 
@@ -72,12 +71,6 @@ const businessItems = [
     url: "/dashboard/financial",
     icon: CreditCard,
     description: "Выплаты и баланс"
-  },
-  {
-    title: "Отчёты",
-    url: "/dashboard/reports",
-    icon: FileText,
-    description: "Документы и отчёты"
   },
 ];
 
