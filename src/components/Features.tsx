@@ -45,41 +45,41 @@ const Features = () => {
         </div>
 
         {/* Additional Benefits Section */}
-        <div className="mt-20 bg-hero-gradient rounded-3xl p-8 lg:p-12 text-white">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div className="mt-16 bg-hero-gradient rounded-3xl p-6 lg:p-8 text-white">
+          <div className="grid lg:grid-cols-2 gap-6 items-center">
             <div>
-              <h3 className="text-3xl font-bold mb-4">
+              <h3 className="text-2xl lg:text-3xl font-bold mb-3">
                 Безлимитные объявления
               </h3>
-              <p className="text-white/90 text-lg mb-6">
+              <p className="text-white/90 mb-4 text-base">
                 В отличие от других платформ, мы не ограничиваем количество ваших 
                 объявлений. Размещайте столько автомобилей, сколько хотите продать.
               </p>
-              <div className="flex items-center text-white/80">
-                <Edit3 className="h-5 w-5 mr-2" />
+              <div className="flex items-center text-white/80 text-sm">
+                <Edit3 className="h-4 w-4 mr-2" />
                 <span>Никаких пакетных ограничений</span>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                <Globe2 className="h-8 w-8 mb-2" />
-                <div className="text-2xl font-bold">12</div>
-                <div className="text-sm text-white/80">Стран экспорта</div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+                <Globe2 className="h-6 w-6 mb-1" />
+                <div className="text-xl font-bold">12</div>
+                <div className="text-xs text-white/80">Стран экспорта</div>
               </div>
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                <DollarSign className="h-8 w-8 mb-2" />
-                <div className="text-2xl font-bold">∞</div>
-                <div className="text-sm text-white/80">Объявлений</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+                <DollarSign className="h-6 w-6 mb-1" />
+                <div className="text-xl font-bold">∞</div>
+                <div className="text-xs text-white/80">Объявлений</div>
               </div>
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                <TrendingUp className="h-8 w-8 mb-2" />
-                <div className="text-2xl font-bold">24/7</div>
-                <div className="text-sm text-white/80">Поддержка</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+                <TrendingUp className="h-6 w-6 mb-1" />
+                <div className="text-xl font-bold">24/7</div>
+                <div className="text-xs text-white/80">Поддержка</div>
               </div>
-              <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                <BarChart3 className="h-8 w-8 mb-2" />
-                <div className="text-2xl font-bold">Real-time</div>
-                <div className="text-sm text-white/80">Аналитика</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
+                <BarChart3 className="h-6 w-6 mb-1" />
+                <div className="text-xl font-bold">Real-time</div>
+                <div className="text-xs text-white/80">Аналитика</div>
               </div>
             </div>
           </div>
