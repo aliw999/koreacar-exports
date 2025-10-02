@@ -61,25 +61,33 @@ const Features = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
-                <Globe2 className="h-6 w-6 mb-1" />
-                <div className="text-xl font-bold">12</div>
-                <div className="text-xs text-white/80">Стран экспорта</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm flex items-center gap-3">
+                <Globe2 className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="text-xl font-bold leading-tight">12</div>
+                  <div className="text-xs text-white/80">Стран экспорта</div>
+                </div>
               </div>
-              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
-                <DollarSign className="h-6 w-6 mb-1" />
-                <div className="text-xl font-bold">∞</div>
-                <div className="text-xs text-white/80">Объявлений</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm flex items-center gap-3">
+                <DollarSign className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="text-xl font-bold leading-tight">∞</div>
+                  <div className="text-xs text-white/80">Объявлений</div>
+                </div>
               </div>
-              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
-                <TrendingUp className="h-6 w-6 mb-1" />
-                <div className="text-xl font-bold">24/7</div>
-                <div className="text-xs text-white/80">Поддержка</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm flex items-center gap-3">
+                <TrendingUp className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="text-xl font-bold leading-tight">24/7</div>
+                  <div className="text-xs text-white/80">Поддержка</div>
+                </div>
               </div>
-              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm">
-                <BarChart3 className="h-6 w-6 mb-1" />
-                <div className="text-xl font-bold">Real-time</div>
-                <div className="text-xs text-white/80">Аналитика</div>
+              <div className="bg-white/10 rounded-xl p-3 backdrop-blur-sm flex items-center gap-3">
+                <BarChart3 className="h-8 w-8 flex-shrink-0" />
+                <div>
+                  <div className="text-xl font-bold leading-tight">Real-time</div>
+                  <div className="text-xs text-white/80">Аналитика</div>
+                </div>
               </div>
             </div>
           </div>
