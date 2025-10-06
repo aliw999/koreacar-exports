@@ -14,6 +14,7 @@ const ProductDetail = () => {
   } = useParams();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   // Mock data - в реальном приложении это будет загружаться по ID
   const product = {
@@ -112,7 +113,7 @@ const ProductDetail = () => {
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Images */}
+          {/* Images Gallery */}
           <Card className="bg-card-gradient border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -121,22 +122,47 @@ const ProductDetail = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 gap-4">
-                {product.images.map((image, index) => <div key={index} className="aspect-video bg-muted rounded-lg relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Car className="h-12 w-12 text-muted-foreground" />
+              <div className="flex gap-4">
+                {/* Thumbnails Column */}
+                <div className="flex flex-col gap-2 w-20">
+                  {product.images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                      className={`aspect-square bg-muted rounded-lg relative overflow-hidden border-2 transition-all ${
+                        selectedImage === index ? 'border-primary' : 'border-transparent hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Car className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                {/* Main Image */}
+                <div className="flex-1 aspect-video bg-muted rounded-lg relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Car className="h-20 w-20 text-muted-foreground" />
+                  </div>
+                  <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full text-sm">
+                    {selectedImage + 1} / {product.images.length}
+                  </div>
+                  {isEditing && (
+                    <div className="absolute top-2 right-2">
+                      <Button size="sm" variant="secondary">
+                        <Upload className="h-4 w-4" />
+                      </Button>
                     </div>
-                    {isEditing && <div className="absolute top-2 right-2">
-                        <Button size="sm" variant="secondary">
-                          <Upload className="h-4 w-4" />
-                        </Button>
-                      </div>}
-                  </div>)}
+                  )}
+                </div>
               </div>
-              {isEditing && <Button variant="outline" className="w-full mt-4">
+              {isEditing && (
+                <Button variant="outline" className="w-full mt-4">
                   <Upload className="mr-2 h-4 w-4" />
                   Добавить фотографии
-                </Button>}
+                </Button>
+              )}
             </CardContent>
           </Card>
 
