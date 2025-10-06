@@ -1,7 +1,7 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { DashboardSidebar } from "./DashboardSidebar";
 import { Button } from "@/components/ui/button";
-import { Bell, User, LogOut, CheckCircle2, AlertCircle, Info, Package } from "lucide-react";
+import { Bell, User, LogOut, CircleCheck as CheckCircle2, CircleAlert as AlertCircle, Info, Package } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
