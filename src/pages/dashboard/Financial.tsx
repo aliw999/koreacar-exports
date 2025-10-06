@@ -313,12 +313,11 @@ const Financial = () => {
 
       {/* Tabs */}
       <Tabs defaultValue="sales" className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="sales">Продажи</TabsTrigger>
           <TabsTrigger value="pending">К получению</TabsTrigger>
           <TabsTrigger value="commissions">Комиссии</TabsTrigger>
           <TabsTrigger value="documents">Документы</TabsTrigger>
-          <TabsTrigger value="settings">Настройки</TabsTrigger>
         </TabsList>
 
         {/* Sales Tab */}
@@ -544,85 +543,6 @@ const Financial = () => {
           </Card>
         </TabsContent>
 
-        {/* Settings Tab */}
-        <TabsContent value="settings">
-          <Card>
-            <CardHeader>
-              <CardTitle>Настройки финансов</CardTitle>
-              <CardDescription>
-                Базовые настройки и уведомления
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Основная валюта отображения</Label>
-                  <Select defaultValue="KRW">
-                    <SelectTrigger className="w-48">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="KRW">Корейские воны (KRW)</SelectItem>
-                      <SelectItem value="USD">Доллары США (USD)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div className="flex items-center justify-between py-4 border-t">
-                  <div className="space-y-1">
-                    <Label className="flex items-center gap-2">
-                      <Mail className="h-4 w-4" />
-                      Email уведомления о платежах
-                    </Label>
-                    <div className="text-sm text-muted-foreground">
-                      Получать уведомления о новых платежах и просрочках
-                    </div>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-
-                <div className="flex items-center justify-between py-4 border-t">
-                  <div className="space-y-1">
-                    <Label className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      Автоматические напоминания покупателям
-                    </Label>
-                    <div className="text-sm text-muted-foreground">
-                      Отправлять напоминания за 3 дня до срока оплаты
-                    </div>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-
-                <div className="space-y-4 pt-4 border-t">
-                  <Label>Банковские реквизиты для платежей</Label>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="bank-name">Название банка</Label>
-                      <Input id="bank-name" placeholder="Например: Hana Bank" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="account-number">Номер счета</Label>
-                      <Input id="account-number" placeholder="123-456-789012" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="swift">SWIFT код</Label>
-                      <Input id="swift" placeholder="HNBNKRSE" />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="beneficiary">Получатель</Label>
-                      <Input id="beneficiary" placeholder="Ваше имя/компания" />
-                    </div>
-                  </div>
-                  <Button className="w-full sm:w-auto">
-                    <CheckCircle className="mr-2 h-4 w-4" />
-                    Сохранить реквизиты
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </TabsContent>
       </Tabs>
     </div>
   );

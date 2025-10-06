@@ -141,6 +141,82 @@ const Settings = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* Financial Settings */}
+          <Card className="bg-card-gradient border-border/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <CreditCard className="h-5 w-5" />
+                Финансовые настройки
+              </CardTitle>
+              <CardDescription>
+                Настройки валюты, платежей и уведомлений
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label>Основная валюта отображения</Label>
+                  <select className="flex h-10 w-48 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                    <option value="KRW">Корейские воны (KRW)</option>
+                    <option value="USD">Доллары США (USD)</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center justify-between py-4 border-t">
+                  <div className="space-y-1">
+                    <Label className="flex items-center gap-2">
+                      <Mail className="h-4 w-4" />
+                      Email уведомления о платежах
+                    </Label>
+                    <div className="text-sm text-muted-foreground">
+                      Получать уведомления о новых платежах и просрочках
+                    </div>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+
+                <div className="flex items-center justify-between py-4 border-t">
+                  <div className="space-y-1">
+                    <Label className="flex items-center gap-2">
+                      <SettingsIcon className="h-4 w-4" />
+                      Автоматические напоминания покупателям
+                    </Label>
+                    <div className="text-sm text-muted-foreground">
+                      Отправлять напоминания за 3 дня до срока оплаты
+                    </div>
+                  </div>
+                  <Switch defaultChecked />
+                </div>
+
+                <div className="space-y-4 pt-4 border-t">
+                  <Label>Банковские реквизиты для платежей</Label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="bank-name">Название банка</Label>
+                      <Input id="bank-name" placeholder="Например: Hana Bank" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="account-number">Номер счета</Label>
+                      <Input id="account-number" placeholder="123-456-789012" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="swift">SWIFT код</Label>
+                      <Input id="swift" placeholder="HNBNKRSE" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="beneficiary">Получатель</Label>
+                      <Input id="beneficiary" placeholder="Ваше имя/компания" />
+                    </div>
+                  </div>
+                  <Button className="w-full sm:w-auto">
+                    <Save className="mr-2 h-4 w-4" />
+                    Сохранить реквизиты
+                  </Button>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Quick Info and Actions */}
