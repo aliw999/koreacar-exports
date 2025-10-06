@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { UserCircle, Mail, Phone, MapPin, Calendar, Shield, Save, Upload, Lock } from 'lucide-react';
+import { CircleUser as UserCircle, Mail, Phone, MapPin, Calendar, Shield, Save, Upload, Lock } from 'lucide-react';
 import InputMask from 'react-input-mask';
 
 const Profile = () => {
