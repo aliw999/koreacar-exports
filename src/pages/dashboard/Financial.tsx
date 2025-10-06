@@ -8,173 +8,164 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { 
-  DollarSign,
-  TrendingUp,
-  Clock,
-  Calculator,
-  Download,
-  Send,
-  FileText,
-  AlertTriangle,
-  CheckCircle,
-  Settings as SettingsIcon,
-  Mail,
-  Calendar,
-  CreditCard
-} from 'lucide-react';
-
+import { DollarSign, TrendingUp, Clock, Calculator, Download, Send, FileText, AlertTriangle, CheckCircle, Settings as SettingsIcon, Mail, Calendar, CreditCard } from 'lucide-react';
 const Financial = () => {
   const [currency, setCurrency] = useState('KRW');
-  
+
   // KPI Data
-  const kpiData = [
-    {
-      title: 'Продажи за месяц',
-      valueKRW: '₩ 450,000,000',
-      valueUSD: '$337,500',
-      change: '+15%',
-      trend: 'up',
-      icon: DollarSign,
-      description: 'к прошлому месяцу'
-    },
-    {
-      title: 'Активные сделки',
-      valueKRW: '12 автомобилей',
-      valueUSD: '$2,850,000',
-      change: '+3',
-      trend: 'up',
-      icon: TrendingUp,
-      description: 'в работе'
-    },
-    {
-      title: 'К получению',
-      valueKRW: '₩ 180,000,000',
-      valueUSD: '$135,000',
-      change: '7 дней',
-      trend: 'neutral',
-      icon: Clock,
-      description: 'среднее'
-    },
-    {
-      title: 'Средний чек',
-      valueKRW: '₩ 37,500,000',
-      valueUSD: '$28,125',
-      change: '+8.5%',
-      trend: 'up',
-      icon: Calculator,
-      description: 'за сделку'
-    }
-  ];
+  const kpiData = [{
+    title: 'Продажи за месяц',
+    valueKRW: '₩ 450,000,000',
+    valueUSD: '$337,500',
+    change: '+15%',
+    trend: 'up',
+    icon: DollarSign,
+    description: 'к прошлому месяцу'
+  }, {
+    title: 'Активные сделки',
+    valueKRW: '12 автомобилей',
+    valueUSD: '$2,850,000',
+    change: '+3',
+    trend: 'up',
+    icon: TrendingUp,
+    description: 'в работе'
+  }, {
+    title: 'К получению',
+    valueKRW: '₩ 180,000,000',
+    valueUSD: '$135,000',
+    change: '7 дней',
+    trend: 'neutral',
+    icon: Clock,
+    description: 'среднее'
+  }, {
+    title: 'Средний чек',
+    valueKRW: '₩ 37,500,000',
+    valueUSD: '$28,125',
+    change: '+8.5%',
+    trend: 'up',
+    icon: Calculator,
+    description: 'за сделку'
+  }];
 
   // Sales Data
-  const salesData = [
-    {
-      date: '15.09.25',
-      car: 'Hyundai Sonata 2023',
-      buyer: 'ABC Motors',
-      country: '🇰🇿',
-      amountKRW: '₩ 35,000,000',
-      amountUSD: '$26,250',
-      status: 'paid'
-    },
-    {
-      date: '12.09.25',
-      car: 'Kia Sportage 2024',
-      buyer: 'DEF Auto',
-      country: '🇺🇿',
-      amountKRW: '₩ 42,000,000',
-      amountUSD: '$31,500',
-      status: 'pending'
-    },
-    {
-      date: '10.09.25',
-      car: 'Genesis G90 2023',
-      buyer: 'XYZ Trading',
-      country: '🇰🇿',
-      amountKRW: '₩ 65,000,000',
-      amountUSD: '$48,750',
-      status: 'paid'
-    },
-    {
-      date: '08.09.25',
-      car: 'Hyundai Tucson 2024',
-      buyer: 'AutoWorld',
-      country: '🇺🇿',
-      amountKRW: '₩ 38,000,000',
-      amountUSD: '$28,500',
-      status: 'overdue'
-    }
-  ];
+  const salesData = [{
+    date: '15.09.25',
+    car: 'Hyundai Sonata 2023',
+    buyer: 'ABC Motors',
+    country: '🇰🇿',
+    amountKRW: '₩ 35,000,000',
+    amountUSD: '$26,250',
+    status: 'paid'
+  }, {
+    date: '12.09.25',
+    car: 'Kia Sportage 2024',
+    buyer: 'DEF Auto',
+    country: '🇺🇿',
+    amountKRW: '₩ 42,000,000',
+    amountUSD: '$31,500',
+    status: 'pending'
+  }, {
+    date: '10.09.25',
+    car: 'Genesis G90 2023',
+    buyer: 'XYZ Trading',
+    country: '🇰🇿',
+    amountKRW: '₩ 65,000,000',
+    amountUSD: '$48,750',
+    status: 'paid'
+  }, {
+    date: '08.09.25',
+    car: 'Hyundai Tucson 2024',
+    buyer: 'AutoWorld',
+    country: '🇺🇿',
+    amountKRW: '₩ 38,000,000',
+    amountUSD: '$28,500',
+    status: 'overdue'
+  }];
 
   // Pending Payments
-  const pendingPayments = [
-    {
-      car: 'Hyundai Tucson 2024',
-      buyer: 'ABC Motors',
-      country: 'Kazakhstan',
-      amountKRW: '₩ 38,000,000',
-      amountUSD: '$28,500',
-      dueDate: '28.09.2025',
-      daysLeft: 3,
-      status: 'pending'
-    },
-    {
-      car: 'Kia Sorento 2023',
-      buyer: 'XYZ Trading',
-      country: 'Uzbekistan',
-      amountKRW: '₩ 45,000,000',
-      amountUSD: '$33,750',
-      dueDate: '20.09.2025',
-      daysLeft: -5,
-      status: 'overdue'
-    }
-  ];
+  const pendingPayments = [{
+    car: 'Hyundai Tucson 2024',
+    buyer: 'ABC Motors',
+    country: 'Kazakhstan',
+    amountKRW: '₩ 38,000,000',
+    amountUSD: '$28,500',
+    dueDate: '28.09.2025',
+    daysLeft: 3,
+    status: 'pending'
+  }, {
+    car: 'Kia Sorento 2023',
+    buyer: 'XYZ Trading',
+    country: 'Uzbekistan',
+    amountKRW: '₩ 45,000,000',
+    amountUSD: '$33,750',
+    dueDate: '20.09.2025',
+    daysLeft: -5,
+    status: 'overdue'
+  }];
 
   // Commission Data
-  const commissionData = [
-    {
-      period: 'Сентябрь 2025',
-      turnover: '₩ 180,000,000',
-      commission: '₩ 9,000,000',
-      status: 'accrued',
-      date: '05.10.2025'
-    },
-    {
-      period: 'Август 2025',
-      turnover: '₩ 220,000,000',
-      commission: '₩ 11,000,000',
-      status: 'paid',
-      date: '05.09.2025'
-    },
-    {
-      period: 'Июль 2025',
-      turnover: '₩ 195,000,000',
-      commission: '₩ 9,750,000',
-      status: 'paid',
-      date: '05.08.2025'
-    }
-  ];
+  const commissionData = [{
+    period: 'Сентябрь 2025',
+    turnover: '₩ 180,000,000',
+    commission: '₩ 9,000,000',
+    status: 'accrued',
+    date: '05.10.2025'
+  }, {
+    period: 'Август 2025',
+    turnover: '₩ 220,000,000',
+    commission: '₩ 11,000,000',
+    status: 'paid',
+    date: '05.09.2025'
+  }, {
+    period: 'Июль 2025',
+    turnover: '₩ 195,000,000',
+    commission: '₩ 9,750,000',
+    status: 'paid',
+    date: '05.08.2025'
+  }];
 
   // Top Countries Data
-  const topCountries = [
-    { name: 'Казахстан', sales: 45, percentage: 42 },
-    { name: 'Узбекистан', sales: 32, percentage: 30 },
-    { name: 'Кыргызстан', sales: 18, percentage: 17 },
-    { name: 'Таджикистан', sales: 12, percentage: 11 }
-  ];
+  const topCountries = [{
+    name: 'Казахстан',
+    sales: 45,
+    percentage: 42
+  }, {
+    name: 'Узбекистан',
+    sales: 32,
+    percentage: 30
+  }, {
+    name: 'Кыргызстан',
+    sales: 18,
+    percentage: 17
+  }, {
+    name: 'Таджикистан',
+    sales: 12,
+    percentage: 11
+  }];
 
   // Monthly Sales Data
-  const monthlySales = [
-    { month: 'Март', amount: 320 },
-    { month: 'Апрель', amount: 280 },
-    { month: 'Май', amount: 380 },
-    { month: 'Июнь', amount: 420 },
-    { month: 'Июль', amount: 390 },
-    { month: 'Август', amount: 440 },
-    { month: 'Сентябрь', amount: 450 }
-  ];
-
+  const monthlySales = [{
+    month: 'Март',
+    amount: 320
+  }, {
+    month: 'Апрель',
+    amount: 280
+  }, {
+    month: 'Май',
+    amount: 380
+  }, {
+    month: 'Июнь',
+    amount: 420
+  }, {
+    month: 'Июль',
+    amount: 390
+  }, {
+    month: 'Август',
+    amount: 440
+  }, {
+    month: 'Сентябрь',
+    amount: 450
+  }];
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'paid':
@@ -189,9 +180,7 @@ const Financial = () => {
         return <Badge variant="outline">{status}</Badge>;
     }
   };
-
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
@@ -200,24 +189,12 @@ const Financial = () => {
             Управление финансами и отчетность по продажам
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          <Label htmlFor="currency" className="text-sm">Валюта:</Label>
-          <Select value={currency} onValueChange={setCurrency}>
-            <SelectTrigger className="w-20" id="currency">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="KRW">KRW</SelectItem>
-              <SelectItem value="USD">USD</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {kpiData.map((kpi, index) => (
-          <Card key={index} className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
+        {kpiData.map((kpi, index) => <Card key={index} className="bg-card-gradient border-border/50 hover:shadow-medium transition-all duration-300">
             <CardHeader className="pb-2">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -242,8 +219,7 @@ const Financial = () => {
                 </div>
               </div>
             </CardContent>
-          </Card>
-        ))}
+          </Card>)}
       </div>
 
       {/* Charts */}
@@ -261,20 +237,17 @@ const Financial = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {monthlySales.map((data, index) => (
-                <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/30 transition-colors">
+              {monthlySales.map((data, index) => <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/30 transition-colors">
                   <div className="font-medium">{data.month}</div>
                   <div className="flex items-center gap-4">
                     <div className="w-32 bg-muted rounded-full h-2">
-                      <div 
-                        className="bg-primary h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${(data.amount / 500) * 100}%` }}
-                      />
+                      <div className="bg-primary h-2 rounded-full transition-all duration-300" style={{
+                    width: `${data.amount / 500 * 100}%`
+                  }} />
                     </div>
                     <span className="font-medium text-sm min-w-16">{data.amount}M</span>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </CardContent>
         </Card>
@@ -292,20 +265,17 @@ const Financial = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {topCountries.map((country, index) => (
-                <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/30 transition-colors">
+              {topCountries.map((country, index) => <div key={index} className="flex items-center justify-between p-3 rounded-lg hover:bg-muted/30 transition-colors">
                   <div className="font-medium">{country.name}</div>
                   <div className="flex items-center gap-4">
                     <div className="w-32 bg-muted rounded-full h-2">
-                      <div 
-                        className="bg-primary h-2 rounded-full transition-all duration-300"
-                        style={{ width: `${country.percentage}%` }}
-                      />
+                      <div className="bg-primary h-2 rounded-full transition-all duration-300" style={{
+                    width: `${country.percentage}%`
+                  }} />
                     </div>
                     <span className="font-medium text-sm min-w-16">{country.sales} авто</span>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </CardContent>
         </Card>
@@ -357,8 +327,7 @@ const Financial = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {salesData.map((sale, index) => (
-                    <TableRow key={index}>
+                  {salesData.map((sale, index) => <TableRow key={index}>
                       <TableCell>{sale.date}</TableCell>
                       <TableCell className="font-medium">{sale.car}</TableCell>
                       <TableCell>
@@ -373,8 +342,7 @@ const Financial = () => {
                         </div>
                       </TableCell>
                       <TableCell>{getStatusBadge(sale.status)}</TableCell>
-                    </TableRow>
-                  ))}
+                    </TableRow>)}
                 </TableBody>
               </Table>
             </CardContent>
@@ -392,8 +360,7 @@ const Financial = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {pendingPayments.map((payment, index) => (
-                  <Card key={index} className={`p-4 ${payment.status === 'overdue' ? 'border-red-200 bg-red-50/50 dark:border-red-800 dark:bg-red-950/20' : ''}`}>
+                {pendingPayments.map((payment, index) => <Card key={index} className={`p-4 ${payment.status === 'overdue' ? 'border-red-200 bg-red-50/50 dark:border-red-800 dark:bg-red-950/20' : ''}`}>
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                       <div className="space-y-2">
                         <div className="font-semibold">{payment.car}</div>
@@ -404,18 +371,10 @@ const Financial = () => {
                           {currency === 'KRW' ? payment.amountKRW : payment.amountUSD}
                         </div>
                         <div className="flex items-center gap-2 text-sm">
-                          {payment.status === 'overdue' ? (
-                            <AlertTriangle className="h-4 w-4 text-red-500" />
-                          ) : (
-                            <Clock className="h-4 w-4 text-orange-500" />
-                          )}
-                          {payment.status === 'overdue' ? (
-                            <span className="text-red-600">Просрочка: {Math.abs(payment.daysLeft)} дней</span>
-                          ) : (
-                            <span className="text-muted-foreground">
+                          {payment.status === 'overdue' ? <AlertTriangle className="h-4 w-4 text-red-500" /> : <Clock className="h-4 w-4 text-orange-500" />}
+                          {payment.status === 'overdue' ? <span className="text-red-600">Просрочка: {Math.abs(payment.daysLeft)} дней</span> : <span className="text-muted-foreground">
                               Срок оплаты: {payment.dueDate} (через {payment.daysLeft} дня)
-                            </span>
-                          )}
+                            </span>}
                         </div>
                       </div>
                       <div className="flex flex-col gap-2 min-w-40">
@@ -429,8 +388,7 @@ const Financial = () => {
                         </Button>
                       </div>
                     </div>
-                  </Card>
-                ))}
+                  </Card>)}
               </div>
             </CardContent>
           </Card>
@@ -457,15 +415,13 @@ const Financial = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {commissionData.map((commission, index) => (
-                    <TableRow key={index}>
+                  {commissionData.map((commission, index) => <TableRow key={index}>
                       <TableCell className="font-medium">{commission.period}</TableCell>
                       <TableCell>{commission.turnover}</TableCell>
                       <TableCell className="font-semibold">{commission.commission}</TableCell>
                       <TableCell>{getStatusBadge(commission.status)}</TableCell>
                       <TableCell>{commission.date}</TableCell>
-                    </TableRow>
-                  ))}
+                    </TableRow>)}
                 </TableBody>
               </Table>
             </CardContent>
@@ -544,8 +500,6 @@ const Financial = () => {
         </TabsContent>
 
       </Tabs>
-    </div>
-  );
+    </div>;
 };
-
 export default Financial;
