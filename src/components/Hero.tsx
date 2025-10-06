@@ -17,13 +17,6 @@ const Hero = () => {
           {/* Content */}
           <div className="space-y-8">
             <div className="space-y-6">
-              <Badge 
-                variant="secondary" 
-                className="px-4 py-2 text-sm font-medium bg-primary/10 text-primary border-primary/20"
-              >
-                🚗 Лидер экспорта автомобилей
-              </Badge>
-              
               <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
                 <span className="gradient-text">Продавайте</span> автомобили 
                 <br />
