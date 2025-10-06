@@ -105,6 +105,53 @@ const Messages = () => {
         </div>
       </div>
 
+      {/* Quick Stats */}
+      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-primary">
+              {conversations.length}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Активных разговоров
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-orange-600">
+              {conversations.filter(c => c.unreadCount > 0).length}
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Непрочитанных
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-green-600">
+              2.3 ч
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Среднее время ответа
+            </div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-card-gradient border-border/50">
+          <CardContent className="p-4 text-center">
+            <div className="text-2xl font-bold text-blue-600">
+              95%
+            </div>
+            <div className="text-sm text-muted-foreground">
+              Ответы в тот же день
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Conversations List */}
         <Card className="bg-card-gradient border-border/50">
@@ -223,53 +270,6 @@ const Messages = () => {
             </div>
           </Card>
         </div>
-      </div>
-
-      {/* Quick Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
-              {conversations.length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Активных разговоров
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-orange-600">
-              {conversations.filter(c => c.unreadCount > 0).length}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Непрочитанных
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-green-600">
-              2.3 ч
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Среднее время ответа
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-blue-600">
-              95%
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Ответы в тот же день
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </div>
   );
