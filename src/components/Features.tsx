@@ -9,7 +9,7 @@ const Features = () => {
   }, {
     icon: <Ship className="h-8 w-8" />,
     title: "Международная логистика",
-    description: "Калькулятор доставки, работа с портами, таможенное оформление",
+    description: "Вам необходимо передать автомобиль нам и мы далее займемся всей доставкой до покупателя.",
     gradient: "from-emerald-500 to-emerald-600"
   }, {
     icon: <Shield className="h-8 w-8" />,
