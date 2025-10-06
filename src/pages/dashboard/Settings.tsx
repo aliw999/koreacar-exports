@@ -5,23 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  Settings as SettingsIcon,
-  User,
-  Bell,
-  Shield,
-  CreditCard,
-  MapPin,
-  Phone,
-  Mail,
-  Building,
-  Save,
-  Upload
-} from 'lucide-react';
-
+import { Settings as SettingsIcon, User, Bell, Shield, CreditCard, MapPin, Phone, Mail, Building, Save, Upload } from 'lucide-react';
 const Settings = () => {
-  return (
-    <div className="space-y-6">
+  return <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
@@ -62,58 +48,33 @@ const Settings = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="companyName">Название компании</Label>
-                  <Input 
-                    id="companyName"
-                    placeholder="ООО 'Автодилер'"
-                    defaultValue="NetCars B2B"
-                  />
+                  <Input id="companyName" placeholder="ООО 'Автодилер'" defaultValue="NetCars B2B" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="contactPerson">Контактное лицо</Label>
-                  <Input 
-                    id="contactPerson"
-                    placeholder="Иван Иванов"
-                    defaultValue="Александр Петров"
-                  />
+                  <Input id="contactPerson" placeholder="Иван Иванов" defaultValue="Александр Петров" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input 
-                    id="email"
-                    type="email"
-                    placeholder="contact@company.com"
-                    defaultValue="alex@netcars.ru"
-                  />
+                  <Input id="email" type="email" placeholder="contact@company.com" defaultValue="alex@netcars.ru" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Телефон</Label>
-                  <Input 
-                    id="phone"
-                    placeholder="+7 (999) 123-45-67"
-                    defaultValue="+7 (999) 123-45-67"
-                  />
+                  <Input id="phone" placeholder="+7 (999) 123-45-67" defaultValue="+7 (999) 123-45-67" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="address">Адрес</Label>
-                <Textarea 
-                  id="address"
-                  placeholder="Полный адрес компании..."
-                  defaultValue="г. Москва, ул. Автомобильная, д. 123, офис 456"
-                />
+                <Textarea id="address" placeholder="Полный адрес компании..." defaultValue="г. Москва, ул. Автомобильная, д. 123, офис 456" />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor="description">Описание компании</Label>
-                <Textarea 
-                  id="description"
-                  placeholder="Краткое описание вашего бизнеса..."
-                  defaultValue="Официальный дилер автомобилей с 15-летним опытом работы."
-                />
+                <Textarea id="description" placeholder="Краткое описание вашего бизнеса..." defaultValue="Официальный дилер автомобилей с 15-летним опытом работы." />
               </div>
 
               <Button className="w-full">
@@ -207,10 +168,7 @@ const Settings = () => {
                   Подтвержден
                 </Badge>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm">Тарифный план</span>
-                <Badge variant="default">Премиум</Badge>
-              </div>
+              
               <div className="flex items-center justify-between">
                 <span className="text-sm">Безопасность</span>
                 <Badge variant="secondary">Высокий</Badge>
@@ -279,8 +237,6 @@ const Settings = () => {
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Settings;
