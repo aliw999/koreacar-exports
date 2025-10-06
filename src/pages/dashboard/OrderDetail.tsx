@@ -4,31 +4,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
-import { 
-  ArrowLeft,
-  Printer,
-  Download,
-  CheckCircle,
-  Clock,
-  User,
-  Mail,
-  Phone,
-  Globe,
-  MessageSquare,
-  FileText,
-  Car,
-  DollarSign,
-  Ship,
-  Calendar,
-  MapPin,
-  AlertCircle,
-  Bell,
-  Paperclip,
-  Send
-} from 'lucide-react';
-
+import { ArrowLeft, Printer, Download, CheckCircle, Clock, User, Mail, Phone, Globe, MessageSquare, FileText, Car, DollarSign, Ship, Calendar, MapPin, AlertCircle, Bell, Paperclip, Send } from 'lucide-react';
 const OrderDetail = () => {
-  const { id } = useParams();
+  const {
+    id
+  } = useParams();
 
   // Mock data - в реальном приложении будет загружаться по API
   const order = {
@@ -53,18 +33,50 @@ const OrderDetail = () => {
       location: "Almaty, Kazakhstan",
       history: "3 покупки, все успешные"
     },
-    timeline: [
-      { step: 1, title: "Бронирование оплачено", completed: true, date: "22.09.2025, 14:30" },
-      { step: 2, title: "Проверка автомобиля", completed: true, date: "23.09.2025, 09:15" },
-      { step: 3, title: "Ожидание подтверждения от вас", completed: false, current: true },
-      { step: 4, title: "Формирование договора", completed: false },
-      { step: 5, title: "Подписание договора", completed: false },
-      { step: 6, title: "Формирование счета", completed: false },
-      { step: 7, title: "Оплата", completed: false },
-      { step: 8, title: "Подготовка к экспорту", completed: false },
-      { step: 9, title: "Осуществляется доставка", completed: false },
-      { step: 10, title: "Выдан", completed: false }
-    ],
+    timeline: [{
+      step: 1,
+      title: "Бронирование оплачено",
+      completed: true,
+      date: "22.09.2025, 14:30"
+    }, {
+      step: 2,
+      title: "Проверка автомобиля",
+      completed: true,
+      date: "23.09.2025, 09:15"
+    }, {
+      step: 3,
+      title: "Ожидание подтверждения от вас",
+      completed: false,
+      current: true
+    }, {
+      step: 4,
+      title: "Формирование договора",
+      completed: false
+    }, {
+      step: 5,
+      title: "Подписание договора",
+      completed: false
+    }, {
+      step: 6,
+      title: "Формирование счета",
+      completed: false
+    }, {
+      step: 7,
+      title: "Оплата",
+      completed: false
+    }, {
+      step: 8,
+      title: "Подготовка к экспорту",
+      completed: false
+    }, {
+      step: 9,
+      title: "Осуществляется доставка",
+      completed: false
+    }, {
+      step: 10,
+      title: "Выдан",
+      completed: false
+    }],
     finances: {
       carPrice: "₩ 35,000,000",
       additionalServices: "₩ 500,000",
@@ -79,31 +91,54 @@ const OrderDetail = () => {
       method: "Автовоз через Хоргос",
       duration: "14-18 рабочих дней"
     },
-    messages: [
-      { date: "23.09", sender: "customer", text: "Когда будет готов авто?" },
-      { date: "23.09", sender: "dealer", text: "Подготовим в течение 3 дней" },
-      { date: "22.09", sender: "customer", text: "Оплатил бронирование" }
-    ],
-    documents: [
-      { name: "Договор купли-продажи", type: "pdf", available: true },
-      { name: "Счет на оплату", type: "pdf", available: true },
-      { name: "Инвойс", type: "pdf", available: true },
-      { name: "Техпаспорт автомобиля", type: "pdf", available: true },
-      { name: "Экспортная декларация", type: "pdf", available: false }
-    ]
+    messages: [{
+      date: "23.09",
+      sender: "customer",
+      text: "Когда будет готов авто?"
+    }, {
+      date: "23.09",
+      sender: "dealer",
+      text: "Подготовим в течение 3 дней"
+    }, {
+      date: "22.09",
+      sender: "customer",
+      text: "Оплатил бронирование"
+    }],
+    documents: [{
+      name: "Договор купли-продажи",
+      type: "pdf",
+      available: true
+    }, {
+      name: "Счет на оплату",
+      type: "pdf",
+      available: true
+    }, {
+      name: "Инвойс",
+      type: "pdf",
+      available: true
+    }, {
+      name: "Техпаспорт автомобиля",
+      type: "pdf",
+      available: true
+    }, {
+      name: "Экспортная декларация",
+      type: "pdf",
+      available: false
+    }]
   };
-
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "awaiting_confirmation": return "default";
-      case "confirmed": return "secondary";
-      case "cancelled": return "destructive";
-      default: return "outline";
+      case "awaiting_confirmation":
+        return "default";
+      case "confirmed":
+        return "secondary";
+      case "cancelled":
+        return "destructive";
+      default:
+        return "outline";
     }
   };
-
-  return (
-    <div className="container mx-auto p-6 max-w-7xl">
+  return <div className="container mx-auto p-6 max-w-7xl">
       {/* Header */}
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
@@ -187,30 +222,17 @@ const OrderDetail = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {order.timeline.map((item, index) => (
-                  <div key={item.step} className="flex items-center gap-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      item.completed ? 'bg-green-500' : 
-                      item.current ? 'bg-yellow-500' : 'bg-muted'
-                    }`}>
-                      {item.completed ? (
-                        <CheckCircle className="h-4 w-4 text-white" />
-                      ) : item.current ? (
-                        <Clock className="h-4 w-4 text-white" />
-                      ) : (
-                        <span className="text-xs text-muted-foreground">{item.step}</span>
-                      )}
+                {order.timeline.map((item, index) => <div key={item.step} className="flex items-center gap-4">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${item.completed ? 'bg-green-500' : item.current ? 'bg-yellow-500' : 'bg-muted'}`}>
+                      {item.completed ? <CheckCircle className="h-4 w-4 text-white" /> : item.current ? <Clock className="h-4 w-4 text-white" /> : <span className="text-xs text-muted-foreground">{item.step}</span>}
                     </div>
                     <div className="flex-1">
                       <div className={`font-medium ${item.current ? 'text-yellow-600' : ''}`}>
                         {item.step}. {item.title}
                       </div>
-                      {item.date && (
-                        <div className="text-sm text-muted-foreground">{item.date}</div>
-                      )}
+                      {item.date && <div className="text-sm text-muted-foreground">{item.date}</div>}
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </CardContent>
           </Card>
@@ -388,32 +410,22 @@ const OrderDetail = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <MessageSquare className="h-5 w-5" />
-                Переписка с платформой
+                Переписка с покупателем
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4 mb-4">
-                {order.messages.map((message, index) => (
-                  <div key={index} className={`flex ${message.sender === 'dealer' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
-                      message.sender === 'dealer' 
-                        ? 'bg-primary text-primary-foreground' 
-                        : 'bg-muted'
-                    }`}>
+                {order.messages.map((message, index) => <div key={index} className={`flex ${message.sender === 'dealer' ? 'justify-end' : 'justify-start'}`}>
+                    <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${message.sender === 'dealer' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                       <div className="text-sm">
                         <span className="font-medium">[{message.date}] </span>
                         {message.sender === 'customer' ? order.customer.name.split(' ')[0] : 'Вы'}: {message.text}
                       </div>
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
               <div className="flex gap-2">
-                <Textarea 
-                  placeholder="Написать сообщение..." 
-                  className="flex-1"
-                  rows={2}
-                />
+                <Textarea placeholder="Написать сообщение..." className="flex-1" rows={2} />
                 <div className="flex flex-col gap-2">
                   <Button size="sm" variant="outline">
                     <Paperclip className="h-4 w-4" />
@@ -436,28 +448,18 @@ const OrderDetail = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                {order.documents.map((doc, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
+                {order.documents.map((doc, index) => <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                     <div className="flex items-center gap-2">
                       <FileText className="h-4 w-4 text-muted-foreground" />
                       <span>{doc.name}</span>
                     </div>
-                    <Button 
-                      variant={doc.available ? "outline" : "secondary"} 
-                      size="sm"
-                      disabled={!doc.available}
-                    >
-                      {doc.available ? (
-                        <>
+                    <Button variant={doc.available ? "outline" : "secondary"} size="sm" disabled={!doc.available}>
+                      {doc.available ? <>
                           <Download className="h-4 w-4 mr-2" />
                           Скачать PDF
-                        </>
-                      ) : (
-                        "Создать"
-                      )}
+                        </> : "Создать"}
                     </Button>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </CardContent>
           </Card>
@@ -468,7 +470,7 @@ const OrderDetail = () => {
           <div className="sticky top-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Быстрые действия</CardTitle>
+                
               </CardHeader>
               <CardContent>
                 <div className="space-y-3">
@@ -523,8 +525,6 @@ const OrderDetail = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default OrderDetail;
