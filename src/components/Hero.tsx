@@ -76,16 +76,6 @@ const Hero = () => {
                 alt="Автомобили готовые к экспорту в порту"
                 className="w-full h-[600px] object-cover"
               />
-              {/* Floating Stats */}
-              <div className="absolute top-6 right-6 bg-background/90 backdrop-blur-sm rounded-lg p-4 shadow-medium border border-border/50">
-                <div className="text-2xl font-bold text-primary">2,500+</div>
-                <div className="text-sm text-muted-foreground">Продано авто</div>
-              </div>
-              
-              <div className="absolute bottom-6 left-6 bg-background/90 backdrop-blur-sm rounded-lg p-4 shadow-medium border border-border/50">
-                <div className="text-2xl font-bold text-success">85%</div>
-                <div className="text-sm text-muted-foreground">Успешных сделок</div>
-              </div>
             </div>
             
             {/* Decorative Elements */}
