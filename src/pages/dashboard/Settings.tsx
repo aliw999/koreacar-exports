@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Textarea } from '@/components/ui/textarea';
 import { Settings as SettingsIcon, User, Bell, Shield, CreditCard, MapPin, Phone, Mail, Building, Save, Upload } from 'lucide-react';
+import InputMask from 'react-input-mask';
 const Settings = () => {
   return <div className="space-y-6">
       {/* Header */}
@@ -63,7 +64,11 @@ const Settings = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone">Телефон</Label>
-                  <Input id="phone" placeholder="+7 (999) 123-45-67" defaultValue="+7 (999) 123-45-67" />
+                  <InputMask mask="999-9999-9999" defaultValue="010-1234-5678">
+                    {(inputProps: any) => (
+                      <Input {...inputProps} id="phone" placeholder="010-0000-0000" />
+                    )}
+                  </InputMask>
                 </div>
               </div>
 
@@ -261,7 +266,7 @@ const Settings = () => {
                 <div>
                   <p className="text-sm font-medium">Телефон</p>
                   <p className="text-xs text-muted-foreground">
-                    +7 (999) 123-45-67
+                    010-1234-5678
                   </p>
                 </div>
               </div>
