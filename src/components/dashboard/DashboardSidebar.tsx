@@ -9,6 +9,7 @@ import {
   Home,
   Users,
   HelpCircle,
+  UserCircle,
 } from "lucide-react";
 
 import {
@@ -76,10 +77,16 @@ const businessItems = [
 
 const systemItems = [
   {
+    title: "Профиль",
+    url: "/dashboard/profile",
+    icon: UserCircle,
+    description: "Личные данные"
+  },
+  {
     title: "Настройки",
     url: "/dashboard/settings",
     icon: Settings,
-    description: "Настройки аккаунта"
+    description: "Настройки компании"
   },
   {
     title: "Помощь",

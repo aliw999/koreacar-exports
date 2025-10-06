@@ -14,6 +14,7 @@ import Orders from "./pages/dashboard/Orders";
 import OrderDetail from "./pages/dashboard/OrderDetail";
 import Analytics from "./pages/dashboard/Analytics";
 import Messages from "./pages/dashboard/Messages";
+import Profile from "./pages/dashboard/Profile";
 import Settings from "./pages/dashboard/Settings";
 import Employees from "./pages/dashboard/Employees";
 import Financial from "./pages/dashboard/Financial";
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/dashboard/messages" element={<DashboardLayout><Messages /></DashboardLayout>} />
           <Route path="/dashboard/employees" element={<DashboardLayout><Employees /></DashboardLayout>} />
           <Route path="/dashboard/financial" element={<DashboardLayout><Financial /></DashboardLayout>} />
+          <Route path="/dashboard/profile" element={<DashboardLayout><Profile /></DashboardLayout>} />
           <Route path="/dashboard/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
           <Route path="/dashboard/help" element={<DashboardLayout><Help /></DashboardLayout>} />
           

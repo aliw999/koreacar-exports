@@ -14,7 +14,7 @@ const Settings = () => {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Настройки</h1>
           <p className="text-muted-foreground">
-            Управление аккаунтом и предпочтениями
+            Управление компанией и настройками системы
           </p>
         </div>
       </div>
@@ -25,11 +25,11 @@ const Settings = () => {
           <Card className="bg-card-gradient border-border/50">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <User className="h-5 w-5" />
-                Профиль компании
+                <Building className="h-5 w-5" />
+                Информация о компании
               </CardTitle>
               <CardDescription>
-                Основная информация о вашей компании
+                Основные данные вашей организации
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -52,8 +52,8 @@ const Settings = () => {
                   <Input id="companyName" placeholder="ООО 'Автодилер'" defaultValue="NetCars B2B" />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="contactPerson">Контактное лицо</Label>
-                  <Input id="contactPerson" placeholder="Иван Иванов" defaultValue="Александр Петров" />
+                  <Label htmlFor="companyRegNumber">Регистрационный номер</Label>
+                  <Input id="companyRegNumber" placeholder="1234567890" defaultValue="7701234567" />
                 </div>
               </div>
 
