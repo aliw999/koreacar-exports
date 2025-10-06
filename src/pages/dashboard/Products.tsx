@@ -196,7 +196,7 @@ const Products = () => {
                     <td className="p-4 text-foreground">{product.year}</td>
                     <td className="p-4">
                       <div className="font-semibold text-primary text-lg">
-                        ${product.price.toLocaleString()}
+                        ₩{product.price.toLocaleString()}
                       </div>
                     </td>
                     <td className="p-4">
