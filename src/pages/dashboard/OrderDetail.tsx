@@ -237,35 +237,6 @@ const OrderDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Current Status Actions */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Bell className="h-5 w-5" />
-                Требуется ваше действие
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-                <p className="text-sm text-yellow-800 mb-4">
-                  Покупатель оплатил бронирование и ждет вашего подтверждения наличия автомобиля.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                    <CheckCircle className="h-4 w-4 mr-2" />
-                    Подтвердить наличие
-                  </Button>
-                  <Button variant="destructive" size="sm">
-                    Отменить (авто продан)
-                  </Button>
-                  <Button variant="outline" size="sm">
-                    Запросить дополнительное время
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
           {/* Customer Information */}
           <Card className="mb-6">
             <CardHeader>
@@ -470,11 +441,34 @@ const OrderDetail = () => {
           <div className="sticky top-6">
             <Card>
               <CardHeader>
-                
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Bell className="h-4 w-4" />
+                  Требуется действие
+                </CardTitle>
               </CardHeader>
               <CardContent>
+                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                  <p className="text-xs text-yellow-800 mb-3">
+                    Покупатель оплатил бронирование и ждет вашего подтверждения наличия автомобиля.
+                  </p>
+                  <div className="space-y-2">
+                    <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
+                      <CheckCircle className="h-4 w-4 mr-2" />
+                      Подтвердить наличие
+                    </Button>
+                    <Button variant="destructive" size="sm" className="w-full">
+                      Отменить (авто продан)
+                    </Button>
+                    <Button variant="outline" size="sm" className="w-full">
+                      Запросить время
+                    </Button>
+                  </div>
+                </div>
+
+                <Separator className="my-4" />
+
                 <div className="space-y-3">
-                  <Button className="w-full justify-start">
+                  <Button className="w-full justify-start" variant="outline">
                     <MessageSquare className="h-4 w-4 mr-2" />
                     Написать
                   </Button>
