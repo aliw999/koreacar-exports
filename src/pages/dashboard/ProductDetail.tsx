@@ -83,32 +83,6 @@ const ProductDetail = () => {
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <MessageSquare className="h-5 w-5 text-green-600" />
-              <div className="text-2xl font-bold text-green-600">{product.inquiries}</div>
-            </div>
-            <div className="text-sm text-muted-foreground">Запросов</div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Calendar className="h-5 w-5 text-purple-600" />
-              <div className="text-lg font-bold text-purple-600">
-                {Math.floor((new Date().getTime() - new Date(product.created).getTime()) / (1000 * 3600 * 24))} дней
-              </div>
-            </div>
-            <div className="text-sm text-muted-foreground">На рынке</div>
-          </CardContent>
-        </Card>
-      </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Main Content */}
