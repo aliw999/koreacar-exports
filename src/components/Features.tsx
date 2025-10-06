@@ -14,7 +14,7 @@ const Features = () => {
   }, {
     icon: <Shield className="h-8 w-8" />,
     title: "Безопасные платежи",
-    description: "Оплата производится сразу через контрагента в Корее, эскроу-сервис, защита от мошенничества",
+    description: "Получайте оплату безопасно и просто. Оплату за проданные автомобили вы будете получать напрямую от нашей площадки.",
     gradient: "from-purple-500 to-purple-600"
   }];
   return <section id="features" className="py-24 bg-muted/30">
