@@ -225,7 +225,7 @@ const Settings = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm">Верификация</span>
+                
                 <Badge variant="secondary" className="bg-green-100 text-green-800">
                   Подтвержден
                 </Badge>
