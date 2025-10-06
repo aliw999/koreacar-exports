@@ -27,6 +27,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0);
 
   // Mock data - в реальном приложении это будет загружаться по ID
   const product = {
@@ -168,21 +169,40 @@ const ProductDetail = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="grid grid-cols-2 gap-4">
-                {product.images.map((image, index) => (
-                  <div key={index} className="aspect-video bg-muted rounded-lg relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Car className="h-12 w-12 text-muted-foreground" />
-                    </div>
-                    {isEditing && (
-                      <div className="absolute top-2 right-2">
-                        <Button size="sm" variant="secondary">
-                          <Upload className="h-4 w-4" />
-                        </Button>
+              <div className="flex gap-4">
+                {/* Thumbnails column */}
+                <div className="flex flex-col gap-2 w-20">
+                  {product.images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImage(index)}
+                      className={`aspect-square bg-muted rounded-lg relative overflow-hidden cursor-pointer transition-all hover:ring-2 hover:ring-primary ${
+                        selectedImage === index ? 'ring-2 ring-primary' : ''
+                      }`}
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Car className="h-6 w-6 text-muted-foreground" />
                       </div>
-                    )}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Main image */}
+                <div className="flex-1 aspect-video bg-muted rounded-lg relative overflow-hidden">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Car className="h-24 w-24 text-muted-foreground" />
                   </div>
-                ))}
+                  {isEditing && (
+                    <div className="absolute top-4 right-4">
+                      <Button size="sm" variant="secondary">
+                        <Upload className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  )}
+                  <div className="absolute bottom-4 right-4 bg-black/50 text-white px-3 py-1 rounded-md text-sm">
+                    {selectedImage + 1} / {product.images.length}
+                  </div>
+                </div>
               </div>
               {isEditing && (
                 <Button variant="outline" className="w-full mt-4">
