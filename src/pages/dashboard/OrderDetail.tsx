@@ -21,7 +21,6 @@ const OrderDetail = () => {
       model: "Sonata 2024",
       vin: "KMHL14JA5PA123456",
       price: "₩ 35,000,000",
-      priceUSD: "$26,250",
       mileage: "15,450 км",
       color: "Белый жемчуг",
       image: "/placeholder.svg"
@@ -195,7 +194,7 @@ const OrderDetail = () => {
                     </div>
                     <div>
                       <span className="text-muted-foreground">Цена:</span>
-                      <span className="ml-2 font-semibold">{order.car.price} ({order.car.priceUSD})</span>
+                      <span className="ml-2 font-semibold">{order.car.price}</span>
                     </div>
                     <div>
                       <span className="text-muted-foreground">Пробег:</span>

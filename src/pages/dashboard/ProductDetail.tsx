@@ -259,7 +259,7 @@ const ProductDetail = () => {
               {isEditing ? (
                 <div className="space-y-4">
                   <div>
-                    <Label htmlFor="price">Цена (USD)</Label>
+                    <Label htmlFor="price">Цена (₩)</Label>
                     <Input 
                       id="price"
                       type="number"
@@ -275,7 +275,7 @@ const ProductDetail = () => {
               ) : (
                 <>
                   <div className="text-3xl font-bold text-primary">
-                    ${product.price.toLocaleString()}
+                    ₩{product.price.toLocaleString()}
                   </div>
                   <div className="text-sm text-muted-foreground">
                     Статус: {getStatusBadge(product.status)}

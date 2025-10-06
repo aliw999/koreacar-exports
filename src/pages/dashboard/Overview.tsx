@@ -243,7 +243,7 @@ const Overview = () => {
                         {listing.make} {listing.model} {listing.year}
                       </p>
                       <p className="text-xs text-muted-foreground">
-                        ${listing.price.toLocaleString()}
+                        ₩{listing.price.toLocaleString()}
                       </p>
                       <div className="flex items-center gap-2 mt-1">
                         <span className="text-xs text-muted-foreground">

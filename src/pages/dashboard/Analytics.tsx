@@ -15,7 +15,7 @@ const Analytics = () => {
   const stats = [
     {
       title: "Общая выручка",
-      value: "$156,240",
+      value: "₩156M",
       change: "+12.5%",
       trend: "up",
       icon: DollarSign,
@@ -39,7 +39,7 @@ const Analytics = () => {
     },
     {
       title: "Средняя цена сделки",
-      value: "$42,150",
+      value: "₩42M",
       change: "+15.3%",
       trend: "up",
       icon: TrendingUp,

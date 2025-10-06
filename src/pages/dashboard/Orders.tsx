@@ -192,7 +192,7 @@ const Orders = () => {
         <Card className="bg-card-gradient border-border/50">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-blue-600">
-              ${orders.filter(o => o.status === 'completed').reduce((sum, o) => sum + o.price, 0).toLocaleString()}
+              ₩{orders.filter(o => o.status === 'completed').reduce((sum, o) => sum + o.price, 0).toLocaleString()}
             </div>
             <div className="text-sm text-muted-foreground">
               Выручка
@@ -276,7 +276,7 @@ const Orders = () => {
                     </TableCell>
                     <TableCell>
                       <div className="font-semibold text-primary">
-                        ${order.price.toLocaleString()}
+                        ₩{order.price.toLocaleString()}
                       </div>
                     </TableCell>
                     <TableCell>
