@@ -69,7 +69,7 @@ const Overview = () => {
         <div>
           <h1 className="text-3xl font-bold text-foreground">Обзор</h1>
           <p className="text-muted-foreground">
-            Добро пожаловать в ваш B2B кабинет дилера
+            Добро пожаловать в кабинет дилера
           </p>
         </div>
         <Button className="bg-hero-gradient hover:shadow-glow">
