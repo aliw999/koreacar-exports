@@ -155,13 +155,7 @@ const Settings = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <div className="space-y-2">
-                  <Label>Основная валюта отображения</Label>
-                  <select className="flex h-10 w-48 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                    <option value="KRW">Корейские воны (KRW)</option>
-                    <option value="USD">Доллары США (USD)</option>
-                  </select>
-                </div>
+                
 
                 <div className="flex items-center justify-between py-4 border-t">
                   <div className="space-y-1">
