@@ -142,64 +142,66 @@ const Overview = () => {
       </div>
 
       {/* Promotional Banners */}
-      <div className="space-y-4">
-        {/* Banner 1 - Premium */}
-        <Card className="bg-gradient-to-r from-blue-600 to-blue-800 border-0 overflow-hidden relative">
-          <CardContent className="p-6 md:p-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex-1 text-white">
-                <Badge className="bg-white/20 text-white border-0 mb-3">
-                  Специальное предложение
-                </Badge>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                  Продвигайте свои объявления эффективнее
-                </h3>
-                <p className="text-blue-100 mb-4 max-w-2xl">
-                  Получите 50% скидку на премиум размещение в первый месяц. 
-                  Увеличьте видимость ваших автомобилей в поиске.
-                </p>
-                <Button className="bg-white text-blue-600 hover:bg-blue-50">
-                  Активировать предложение
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-              <div className="flex-shrink-0">
-                <div className="w-32 h-32 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <TrendingUp className="h-16 w-16 text-white" />
+      <div className="relative">
+        <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin">
+          {/* Banner 1 - Premium */}
+          <Card className="bg-gradient-to-r from-blue-600 to-blue-800 border-0 overflow-hidden relative min-w-[600px] flex-shrink-0 snap-start">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex-1 text-white">
+                  <Badge className="bg-white/20 text-white border-0 mb-3">
+                    Специальное предложение
+                  </Badge>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                    Продвигайте свои объявления эффективнее
+                  </h3>
+                  <p className="text-blue-100 mb-4 max-w-2xl">
+                    Получите 50% скидку на премиум размещение в первый месяц.
+                    Увеличьте видимость ваших автомобилей в поиске.
+                  </p>
+                  <Button className="bg-white text-blue-600 hover:bg-blue-50">
+                    Активировать предложение
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="flex-shrink-0">
+                  <div className="w-32 h-32 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <TrendingUp className="h-16 w-16 text-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
 
-        {/* Banner 2 - Training */}
-        <Card className="bg-gradient-to-r from-emerald-600 to-emerald-800 border-0 overflow-hidden relative">
-          <CardContent className="p-6 md:p-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex-1 text-white">
-                <Badge className="bg-white/20 text-white border-0 mb-3">
-                  Новое обучение
-                </Badge>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                  Бесплатный вебинар по увеличению продаж
-                </h3>
-                <p className="text-emerald-100 mb-4 max-w-2xl">
-                  Присоединяйтесь к онлайн-вебинару 15 ноября в 14:00. 
-                  Узнайте секреты успешных дилеров.
-                </p>
-                <Button className="bg-white text-emerald-600 hover:bg-emerald-50">
-                  Зарегистрироваться
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-              <div className="flex-shrink-0">
-                <div className="w-32 h-32 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                  <Users className="h-16 w-16 text-white" />
+          {/* Banner 2 - Training */}
+          <Card className="bg-gradient-to-r from-emerald-600 to-emerald-800 border-0 overflow-hidden relative min-w-[600px] flex-shrink-0 snap-start">
+            <CardContent className="p-6 md:p-8">
+              <div className="flex items-center justify-between gap-6">
+                <div className="flex-1 text-white">
+                  <Badge className="bg-white/20 text-white border-0 mb-3">
+                    Новое обучение
+                  </Badge>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                    Бесплатный вебинар по увеличению продаж
+                  </h3>
+                  <p className="text-emerald-100 mb-4 max-w-2xl">
+                    Присоединяйтесь к онлайн-вебинару 15 ноября в 14:00.
+                    Узнайте секреты успешных дилеров.
+                  </p>
+                  <Button className="bg-white text-emerald-600 hover:bg-emerald-50">
+                    Зарегистрироваться
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="flex-shrink-0">
+                  <div className="w-32 h-32 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <Users className="h-16 w-16 text-white" />
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        </div>
       </div>
 
       {/* Quick Actions Tabs */}
