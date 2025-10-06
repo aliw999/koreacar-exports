@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Car, ShoppingCart, TrendingUp, Users, Plus, Eye, MessageSquare, Clock, CheckCircle, AlertCircle, BarChart3, Info, X, ArrowRight, Package, FileText, CreditCard, Settings as SettingsIcon } from 'lucide-react';
+import { Car, ShoppingCart, TrendingUp, Users, Plus, Eye, MessageSquare, Clock, CircleCheck as CheckCircle, CircleAlert as AlertCircle, ChartBar as BarChart3, Info, X, ArrowRight, Package, FileText, CreditCard, Settings as SettingsIcon } from 'lucide-react';
 const Overview = () => {
   const [showSystemNotification, setShowSystemNotification] = useState(true);
   
