@@ -11,7 +11,6 @@ import {
   Edit,
   Trash2,
   Eye,
-  MessageSquare,
   MoreHorizontal
 } from 'lucide-react';
 import {
@@ -105,7 +104,7 @@ const Products = () => {
       </div>
 
       {/* Stats Summary */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card className="bg-card-gradient border-border/50">
           <CardContent className="p-4 text-center">
             <div className="text-2xl font-bold text-primary">
@@ -135,17 +134,6 @@ const Products = () => {
             </div>
             <div className="text-sm text-muted-foreground">
               Продано
-            </div>
-          </CardContent>
-        </Card>
-        
-        <Card className="bg-card-gradient border-border/50">
-          <CardContent className="p-4 text-center">
-            <div className="text-2xl font-bold text-orange-600">
-              {products.reduce((sum, p) => sum + p.views, 0)}
-            </div>
-            <div className="text-sm text-muted-foreground">
-              Всего просмотров
             </div>
           </CardContent>
         </Card>
@@ -183,8 +171,6 @@ const Products = () => {
                   <th className="text-left p-4 font-medium text-muted-foreground">Год</th>
                   <th className="text-left p-4 font-medium text-muted-foreground">Цена</th>
                   <th className="text-left p-4 font-medium text-muted-foreground">Статус</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Просмотры</th>
-                  <th className="text-left p-4 font-medium text-muted-foreground">Запросы</th>
                   <th className="text-left p-4 font-medium text-muted-foreground">Дата создания</th>
                   <th className="text-right p-4 font-medium text-muted-foreground">Действия</th>
                 </tr>
@@ -215,18 +201,6 @@ const Products = () => {
                     </td>
                     <td className="p-4">
                       {getStatusBadge(product.status)}
-                    </td>
-                    <td className="p-4 text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Eye className="h-4 w-4" />
-                        {product.views}
-                      </div>
-                    </td>
-                    <td className="p-4 text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <MessageSquare className="h-4 w-4" />
-                        {product.inquiries}
-                      </div>
                     </td>
                     <td className="p-4 text-muted-foreground text-sm">
                       {new Date(product.created).toLocaleDateString('ru-RU')}
