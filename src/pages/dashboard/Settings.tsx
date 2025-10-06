@@ -137,15 +137,7 @@ const Settings = () => {
                   <Switch defaultChecked />
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <div className="space-y-1">
-                    <Label>Еженедельный отчет</Label>
-                    <p className="text-sm text-muted-foreground">
-                      Получать еженедельную сводку
-                    </p>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
+                
               </div>
             </CardContent>
           </Card>
