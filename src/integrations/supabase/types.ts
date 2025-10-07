@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      dealer_onboarding: {
+        Row: {
+          account_holder_name: string | null
+          bank_account_number: string | null
+          bank_account_uploaded: boolean | null
+          bank_name: string | null
+          business_license_uploaded: boolean | null
+          business_registration_uploaded: boolean | null
+          completed_at: string | null
+          corporate_seal_uploaded: boolean | null
+          created_at: string | null
+          dealer_license_uploaded: boolean | null
+          id: string
+          is_completed: boolean | null
+          representative_id_uploaded: boolean | null
+          tax_certificate_uploaded: boolean | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          account_holder_name?: string | null
+          bank_account_number?: string | null
+          bank_account_uploaded?: boolean | null
+          bank_name?: string | null
+          business_license_uploaded?: boolean | null
+          business_registration_uploaded?: boolean | null
+          completed_at?: string | null
+          corporate_seal_uploaded?: boolean | null
+          created_at?: string | null
+          dealer_license_uploaded?: boolean | null
+          id?: string
+          is_completed?: boolean | null
+          representative_id_uploaded?: boolean | null
+          tax_certificate_uploaded?: boolean | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          account_holder_name?: string | null
+          bank_account_number?: string | null
+          bank_account_uploaded?: boolean | null
+          bank_name?: string | null
+          business_license_uploaded?: boolean | null
+          business_registration_uploaded?: boolean | null
+          completed_at?: string | null
+          corporate_seal_uploaded?: boolean | null
+          created_at?: string | null
+          dealer_license_uploaded?: boolean | null
+          id?: string
+          is_completed?: boolean | null
+          representative_id_uploaded?: boolean | null
+          tax_certificate_uploaded?: boolean | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

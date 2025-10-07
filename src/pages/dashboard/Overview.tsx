@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Car, ShoppingCart, TrendingUp, Users, Plus, Eye, MessageSquare, Clock, CircleCheck as CheckCircle, CircleAlert as AlertCircle, ChartBar as BarChart3, Info, X, ArrowRight, Package, FileText, CreditCard, Settings as SettingsIcon } from 'lucide-react';
+import { OnboardingProgress } from '@/components/dashboard/OnboardingProgress';
 const Overview = () => {
   const [showSystemNotification, setShowSystemNotification] = useState(true);
   
@@ -16,6 +17,9 @@ const Overview = () => {
     completedDeals: 15
   };
   return <div className="space-y-6">
+      {/* Onboarding Progress */}
+      <OnboardingProgress />
+
       {/* System Notification */}
       {showSystemNotification && (
         <Alert className="bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900">

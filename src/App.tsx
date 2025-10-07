@@ -19,6 +19,7 @@ import Settings from "./pages/dashboard/Settings";
 import Employees from "./pages/dashboard/Employees";
 import Financial from "./pages/dashboard/Financial";
 import Help from "./pages/dashboard/Help";
+import Documents from "./pages/dashboard/Documents";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,6 +45,7 @@ const App = () => (
           <Route path="/dashboard/messages" element={<DashboardLayout><Messages /></DashboardLayout>} />
           <Route path="/dashboard/employees" element={<DashboardLayout><Employees /></DashboardLayout>} />
           <Route path="/dashboard/financial" element={<DashboardLayout><Financial /></DashboardLayout>} />
+          <Route path="/dashboard/documents" element={<DashboardLayout><Documents /></DashboardLayout>} />
           <Route path="/dashboard/profile" element={<DashboardLayout><Profile /></DashboardLayout>} />
           <Route path="/dashboard/settings" element={<DashboardLayout><Settings /></DashboardLayout>} />
           <Route path="/dashboard/help" element={<DashboardLayout><Help /></DashboardLayout>} />

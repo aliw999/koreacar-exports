@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { ChartBar as BarChart3, Car, ShoppingCart, MessageSquare, CreditCard, Settings, Chrome as Home, Users, CircleHelp as HelpCircle, CircleUser as UserCircle } from "lucide-react";
+import { ChartBar as BarChart3, Car, ShoppingCart, MessageSquare, CreditCard, Settings, Chrome as Home, Users, CircleHelp as HelpCircle, CircleUser as UserCircle, FileText } from "lucide-react";
 
 import {
   Sidebar,
@@ -65,6 +65,12 @@ const businessItems = [
 ];
 
 const systemItems = [
+  {
+    title: "Документы",
+    url: "/dashboard/documents",
+    icon: FileText,
+    description: "Документы дилера"
+  },
   {
     title: "Профиль",
     url: "/dashboard/profile",

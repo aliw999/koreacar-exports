@@ -159,7 +159,10 @@ const Register = () => {
             </span>
           </div>
           <p className="text-muted-foreground">
-            Регистрация дилера
+            Регистрация дилера корейских автомобилей
+          </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            После регистрации необходимо загрузить документы дилера
           </p>
         </div>
 
