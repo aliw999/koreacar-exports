@@ -1,130 +1,127 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, Printer, Download, CheckCircle, Clock, User, Mail, Phone, Globe, MessageSquare, FileText, Car, DollarSign, Ship, Calendar, MapPin, AlertCircle, Bell, Paperclip, Send } from 'lucide-react';
-const OrderDetail = () => {
-  const {
-    id
-  } = useParams();
 
-  // Mock data - в реальном приложении будет загружаться по API
-  const order = {
-    id: "KR-2025-0342",
-    status: "awaiting_confirmation",
-    statusText: "Ожидание подтверждения от вас",
-    createdAt: "22.09.2025, 14:30 KST",
-    car: {
-      make: "Hyundai",
-      model: "Sonata 2024",
-      vin: "KMHL14JA5PA123456",
-      price: "₩ 35,000,000",
-      mileage: "15,450 км",
-      color: "Белый жемчуг",
-      image: "/placeholder.svg"
-    },
-    customer: {
-      name: "ABC Auto Trading Ltd.",
-      email: "manager@abcauto.kz",
-      phone: "+7 727 123 4567",
-      location: "Almaty, Kazakhstan",
-      history: "3 покупки, все успешные"
-    },
-    timeline: [{
-      step: 1,
-      title: "Бронирование оплачено",
-      completed: true,
-      date: "22.09.2025, 14:30"
-    }, {
-      step: 2,
-      title: "Проверка автомобиля",
-      completed: true,
-      date: "23.09.2025, 09:15"
-    }, {
-      step: 3,
-      title: "Ожидание подтверждения от вас",
-      completed: false,
-      current: true
-    }, {
-      step: 4,
-      title: "Формирование договора",
-      completed: false
-    }, {
-      step: 5,
-      title: "Подписание договора",
-      completed: false
-    }, {
-      step: 6,
-      title: "Формирование счета",
-      completed: false
-    }, {
-      step: 7,
-      title: "Оплата",
-      completed: false
-    }, {
-      step: 8,
-      title: "Подготовка к экспорту",
-      completed: false
-    }, {
-      step: 9,
-      title: "Осуществляется доставка",
-      completed: false
-    }, {
-      step: 10,
-      title: "Выдан",
-      completed: false
-    }],
-    finances: {
-      carPrice: "₩ 35,000,000",
-      additionalServices: "₩ 500,000",
-      delivery: "₩ 1,200,000",
-      total: "₩ 36,700,000",
-      prepayment: "₩ 7,340,000",
-      remaining: "₩ 29,360,000"
-    },
-    logistics: {
-      from: "Порт Пусан, Южная Корея",
-      to: "Алматы, Казахстан",
-      method: "Автовоз через Хоргос",
-      duration: "14-18 рабочих дней"
-    },
-    messages: [{
-      date: "23.09",
-      sender: "customer",
-      text: "Когда будет готов авто?"
-    }, {
-      date: "23.09",
-      sender: "dealer",
-      text: "Подготовим в течение 3 дней"
-    }, {
-      date: "22.09",
-      sender: "customer",
-      text: "Оплатил бронирование"
-    }],
-    documents: [{
-      name: "Договор купли-продажи",
-      type: "pdf",
-      available: true
-    }, {
-      name: "Счет на оплату",
-      type: "pdf",
-      available: true
-    }, {
-      name: "Инвойс",
-      type: "pdf",
-      available: true
-    }, {
-      name: "Техпаспорт автомобиля",
-      type: "pdf",
-      available: true
-    }, {
-      name: "Экспортная декларация",
-      type: "pdf",
-      available: false
-    }]
+const OrderDetail = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [order, setOrder] = useState<any>(null);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (id) {
+      loadOrderData();
+    }
+  }, [id]);
+
+  const loadOrderData = async () => {
+    try {
+      // Load order
+      const { data: orderData, error: orderError } = await supabase
+        .from('orders')
+        .select('*')
+        .eq('order_number', id)
+        .single();
+
+      if (orderError) throw orderError;
+      setOrder(orderData);
+
+      // Load messages
+      const { data: messagesData, error: messagesError } = await supabase
+        .from('order_messages')
+        .select('*')
+        .eq('order_id', orderData.id)
+        .order('created_at', { ascending: true });
+
+      if (messagesError) throw messagesError;
+      setMessages(messagesData || []);
+    } catch (error) {
+      console.error('Error loading order:', error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось загрузить данные заказа",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const sendMessage = async () => {
+    if (!newMessage.trim() || !order) return;
+
+    try {
+      const { error } = await supabase
+        .from('order_messages')
+        .insert({
+          order_id: order.id,
+          sender_type: 'dealer',
+          message_text: newMessage
+        });
+
+      if (error) throw error;
+
+      setNewMessage('');
+      loadOrderData();
+      
+      toast({
+        title: "Сообщение отправлено",
+        description: "Ваше сообщение успешно доставлено"
+      });
+    } catch (error) {
+      console.error('Error sending message:', error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить сообщение",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('ru-RU', { 
+      day: '2-digit', 
+      month: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="container mx-auto p-6">
+        <div className="flex items-center justify-center h-64">
+          <p>Загрузка...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!order) {
+    return (
+      <div className="container mx-auto p-6">
+        <div className="flex flex-col items-center justify-center h-64">
+          <h2 className="text-2xl font-bold mb-4">Заказ не найден</h2>
+          <Button onClick={() => navigate('/dashboard/orders')}>
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Вернуться к заказам
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "awaiting_confirmation":
@@ -142,7 +139,7 @@ const OrderDetail = () => {
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
           <div className="flex items-center gap-4 mb-6">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={() => navigate('/dashboard/orders')}>
               <ArrowLeft className="h-4 w-4 mr-2" />
               Назад к заказам
             </Button>
@@ -150,15 +147,17 @@ const OrderDetail = () => {
 
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
             <div>
-              <h1 className="text-3xl font-bold">Заказ №{order.id}</h1>
+              <h1 className="text-3xl font-bold">Заказ №{order.order_number}</h1>
               <div className="flex items-center gap-4 mt-2">
                 <Badge variant={getStatusColor(order.status)} className="text-sm">
-                  {order.statusText}
+                  {order.status_text}
                 </Badge>
-                <span className="text-muted-foreground">{order.createdAt}</span>
+                <span className="text-muted-foreground">
+                  {new Date(order.created_at).toLocaleString('ru-RU')}
+                </span>
               </div>
               <p className="text-muted-foreground mt-1">
-                Покупатель: {order.customer.name}
+                Покупатель: {order.customer_name}
               </p>
             </div>
             <div className="flex gap-2">
@@ -185,25 +184,31 @@ const OrderDetail = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold mb-2">
-                    {order.car.make} {order.car.model}
+                    {order.vehicle_make} {order.vehicle_model} {order.vehicle_year}
                   </h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-muted-foreground">VIN:</span>
-                      <span className="ml-2 font-mono">{order.car.vin}</span>
-                    </div>
+                    {order.vehicle_vin && (
+                      <div>
+                        <span className="text-muted-foreground">VIN:</span>
+                        <span className="ml-2 font-mono">{order.vehicle_vin}</span>
+                      </div>
+                    )}
                     <div>
                       <span className="text-muted-foreground">Цена:</span>
-                      <span className="ml-2 font-semibold">{order.car.price}</span>
+                      <span className="ml-2 font-semibold">₩ {order.vehicle_price.toLocaleString()}</span>
                     </div>
-                    <div>
-                      <span className="text-muted-foreground">Пробег:</span>
-                      <span className="ml-2">{order.car.mileage}</span>
-                    </div>
-                    <div>
-                      <span className="text-muted-foreground">Цвет:</span>
-                      <span className="ml-2">{order.car.color}</span>
-                    </div>
+                    {order.vehicle_mileage && (
+                      <div>
+                        <span className="text-muted-foreground">Пробег:</span>
+                        <span className="ml-2">{order.vehicle_mileage}</span>
+                      </div>
+                    )}
+                    {order.vehicle_color && (
+                      <div>
+                        <span className="text-muted-foreground">Цвет:</span>
+                        <span className="ml-2">{order.vehicle_color}</span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex gap-2 mt-4">
                     <Button variant="outline" size="sm">Посмотреть все фото</Button>
@@ -214,27 +219,6 @@ const OrderDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Order Timeline */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle>Прогресс заказа</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {order.timeline.map((item, index) => <div key={item.step} className="flex items-center gap-4">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${item.completed ? 'bg-green-500' : item.current ? 'bg-yellow-500' : 'bg-muted'}`}>
-                      {item.completed ? <CheckCircle className="h-4 w-4 text-white" /> : item.current ? <Clock className="h-4 w-4 text-white" /> : <span className="text-xs text-muted-foreground">{item.step}</span>}
-                    </div>
-                    <div className="flex-1">
-                      <div className={`font-medium ${item.current ? 'text-yellow-600' : ''}`}>
-                        {item.step}. {item.title}
-                      </div>
-                      {item.date && <div className="text-sm text-muted-foreground">{item.date}</div>}
-                    </div>
-                  </div>)}
-              </div>
-            </CardContent>
-          </Card>
 
           {/* Customer Information */}
           <Card className="mb-6">
@@ -245,23 +229,19 @@ const OrderDetail = () => {
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
                   <User className="h-4 w-4 text-muted-foreground" />
-                  <span className="font-medium">{order.customer.name}</span>
+                  <span className="font-medium">{order.customer_name}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-muted-foreground" />
-                  <span>{order.customer.email}</span>
+                  <span>{order.customer_email}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-muted-foreground" />
-                  <span>{order.customer.phone}</span>
+                  <span>{order.customer_phone}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe className="h-4 w-4 text-muted-foreground" />
-                  <span>{order.customer.location}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FileText className="h-4 w-4 text-muted-foreground" />
-                  <span>История: {order.customer.history}</span>
+                  <span>{order.customer_location}</span>
                 </div>
                 <Separator />
                 <div className="flex gap-2">
@@ -294,38 +274,32 @@ const OrderDetail = () => {
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span>Стоимость авто:</span>
-                  <span className="font-medium">{order.finances.carPrice}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Доп. услуги:</span>
-                  <span className="font-medium">{order.finances.additionalServices}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Доставка:</span>
-                  <span className="font-medium">{order.finances.delivery}</span>
+                  <span className="font-medium">₩ {order.vehicle_price.toLocaleString()}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-semibold text-lg">
                   <span>Итого:</span>
-                  <span>{order.finances.total}</span>
+                  <span>₩ {order.total_price.toLocaleString()}</span>
                 </div>
                 <Separator />
-                <div className="flex justify-between">
-                  <span>Предоплата (20%):</span>
-                  <span className="font-medium text-green-600">
-                    {order.finances.prepayment} 
-                    <CheckCircle className="inline h-4 w-4 ml-1" />
-                    получена
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Остаток:</span>
-                  <span className="font-medium text-yellow-600">
-                    {order.finances.remaining}
-                    <Clock className="inline h-4 w-4 ml-1" />
-                    ожидание
-                  </span>
-                </div>
+                {order.prepayment && (
+                  <div className="flex justify-between">
+                    <span>Предоплата:</span>
+                    <span className="font-medium text-green-600">
+                      ₩ {order.prepayment.toLocaleString()}
+                      <CheckCircle className="inline h-4 w-4 ml-1" />
+                    </span>
+                  </div>
+                )}
+                {order.remaining_payment && (
+                  <div className="flex justify-between">
+                    <span>Остаток:</span>
+                    <span className="font-medium text-yellow-600">
+                      ₩ {order.remaining_payment.toLocaleString()}
+                      <Clock className="inline h-4 w-4 ml-1" />
+                    </span>
+                  </div>
+                )}
               </div>
             </CardContent>
           </Card>
@@ -340,26 +314,34 @@ const OrderDetail = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">Откуда:</span>
-                  <span className="font-medium">{order.logistics.from}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">Куда:</span>
-                  <span className="font-medium">{order.logistics.to}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Ship className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">Способ:</span>
-                  <span className="font-medium">{order.logistics.method}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Calendar className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm">Срок:</span>
-                  <span className="font-medium">{order.logistics.duration}</span>
-                </div>
+                {order.delivery_from && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Откуда:</span>
+                    <span className="font-medium">{order.delivery_from}</span>
+                  </div>
+                )}
+                {order.delivery_to && (
+                  <div className="flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Куда:</span>
+                    <span className="font-medium">{order.delivery_to}</span>
+                  </div>
+                )}
+                {order.delivery_method && (
+                  <div className="flex items-center gap-2">
+                    <Ship className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Способ:</span>
+                    <span className="font-medium">{order.delivery_method}</span>
+                  </div>
+                )}
+                {order.estimated_delivery && (
+                  <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Срок:</span>
+                    <span className="font-medium">{order.estimated_delivery}</span>
+                  </div>
+                )}
                 <Separator />
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm">
@@ -384,23 +366,57 @@ const OrderDetail = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4 mb-4">
-                {order.messages.map((message, index) => <div key={index} className={`flex ${message.sender === 'dealer' ? 'justify-end' : 'justify-start'}`}>
-                    <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${message.sender === 'dealer' ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                      <div className="text-sm">
-                        <span className="font-medium">[{message.date}] </span>
-                        {message.sender === 'customer' ? order.customer.name.split(' ')[0] : 'Вы'}: {message.text}
+              <div className="space-y-4 mb-4 max-h-[400px] overflow-y-auto p-4 bg-muted/20 rounded-lg">
+                {messages.length === 0 ? (
+                  <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+                    <MessageSquare className="h-12 w-12 mb-2" />
+                    <p>Нет сообщений по этому заказу</p>
+                    <p className="text-sm">Начните переписку первым</p>
+                  </div>
+                ) : (
+                  messages.map((message) => (
+                    <div 
+                      key={message.id} 
+                      className={`flex ${message.sender_type === 'dealer' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+                        message.sender_type === 'dealer' 
+                          ? 'bg-primary text-primary-foreground' 
+                          : 'bg-background border'
+                      }`}>
+                        <div className="text-sm">
+                          <span className="font-medium">
+                            {message.sender_type === 'customer' ? order.customer_name.split(' ')[0] : 'Вы'}:
+                          </span>
+                          {' '}{message.message_text}
+                        </div>
+                        <div className="text-xs opacity-70 mt-1">
+                          {formatDate(message.created_at)}
+                        </div>
                       </div>
                     </div>
-                  </div>)}
+                  ))
+                )}
               </div>
               <div className="flex gap-2">
-                <Textarea placeholder="Написать сообщение..." className="flex-1" rows={2} />
+                <Textarea 
+                  placeholder="Написать сообщение по этому заказу..." 
+                  className="flex-1" 
+                  rows={2}
+                  value={newMessage}
+                  onChange={(e) => setNewMessage(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      sendMessage();
+                    }
+                  }}
+                />
                 <div className="flex flex-col gap-2">
                   <Button size="sm" variant="outline">
                     <Paperclip className="h-4 w-4" />
                   </Button>
-                  <Button size="sm">
+                  <Button size="sm" onClick={sendMessage} disabled={!newMessage.trim()}>
                     <Send className="h-4 w-4" />
                   </Button>
                 </div>
@@ -408,31 +424,6 @@ const OrderDetail = () => {
             </CardContent>
           </Card>
 
-          {/* Documents */}
-          <Card className="mb-6">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5" />
-                Документы
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {order.documents.map((doc, index) => <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div className="flex items-center gap-2">
-                      <FileText className="h-4 w-4 text-muted-foreground" />
-                      <span>{doc.name}</span>
-                    </div>
-                    <Button variant={doc.available ? "outline" : "secondary"} size="sm" disabled={!doc.available}>
-                      {doc.available ? <>
-                          <Download className="h-4 w-4 mr-2" />
-                          Скачать PDF
-                        </> : "Создать"}
-                    </Button>
-                  </div>)}
-              </div>
-            </CardContent>
-          </Card>
         </div>
 
         {/* Quick Actions Sidebar */}

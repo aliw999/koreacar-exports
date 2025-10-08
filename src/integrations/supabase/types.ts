@@ -71,6 +71,122 @@ export type Database = {
         }
         Relationships: []
       }
+      order_messages: {
+        Row: {
+          created_at: string
+          id: string
+          message_text: string
+          order_id: string
+          sender_type: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message_text: string
+          order_id: string
+          sender_type: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message_text?: string
+          order_id?: string
+          sender_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_messages_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_location: string
+          customer_name: string
+          customer_phone: string
+          dealer_id: string
+          delivery_from: string | null
+          delivery_method: string | null
+          delivery_to: string | null
+          estimated_delivery: string | null
+          id: string
+          order_number: string
+          prepayment: number | null
+          remaining_payment: number | null
+          status: string
+          status_text: string
+          total_price: number
+          updated_at: string
+          vehicle_color: string | null
+          vehicle_make: string
+          vehicle_mileage: string | null
+          vehicle_model: string
+          vehicle_price: number
+          vehicle_vin: string | null
+          vehicle_year: number
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_location: string
+          customer_name: string
+          customer_phone: string
+          dealer_id: string
+          delivery_from?: string | null
+          delivery_method?: string | null
+          delivery_to?: string | null
+          estimated_delivery?: string | null
+          id?: string
+          order_number: string
+          prepayment?: number | null
+          remaining_payment?: number | null
+          status?: string
+          status_text: string
+          total_price: number
+          updated_at?: string
+          vehicle_color?: string | null
+          vehicle_make: string
+          vehicle_mileage?: string | null
+          vehicle_model: string
+          vehicle_price: number
+          vehicle_vin?: string | null
+          vehicle_year: number
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_location?: string
+          customer_name?: string
+          customer_phone?: string
+          dealer_id?: string
+          delivery_from?: string | null
+          delivery_method?: string | null
+          delivery_to?: string | null
+          estimated_delivery?: string | null
+          id?: string
+          order_number?: string
+          prepayment?: number | null
+          remaining_payment?: number | null
+          status?: string
+          status_text?: string
+          total_price?: number
+          updated_at?: string
+          vehicle_color?: string | null
+          vehicle_make?: string
+          vehicle_mileage?: string | null
+          vehicle_model?: string
+          vehicle_price?: number
+          vehicle_vin?: string | null
+          vehicle_year?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
