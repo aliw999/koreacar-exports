@@ -1,17 +1,19 @@
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Car, 
+import {
+  Car,
   Plus,
   Search,
   Filter,
   Edit,
   Trash2,
   Eye,
-  MoreHorizontal
+  MoreHorizontal,
+  Download
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -20,9 +22,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { EncarImportModal } from '@/components/import/EncarImportModal';
 
 const Products = () => {
   const navigate = useNavigate();
+  const [showImportModal, setShowImportModal] = useState(false);
   const products = [
     {
       id: 1,
@@ -97,11 +101,25 @@ const Products = () => {
             Управление вашими автомобильными объявлениями
           </p>
         </div>
-        <Button className="bg-hero-gradient hover:shadow-glow">
-          <Plus className="mr-2 h-4 w-4" />
-          Добавить автомобиль
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" onClick={() => setShowImportModal(true)}>
+            <Download className="mr-2 h-4 w-4" />
+            Перенести с Encar
+          </Button>
+          <Button className="bg-hero-gradient hover:shadow-glow">
+            <Plus className="mr-2 h-4 w-4" />
+            Добавить автомобиль
+          </Button>
+        </div>
       </div>
+
+      <EncarImportModal
+        open={showImportModal}
+        onOpenChange={setShowImportModal}
+        onImportComplete={() => {
+          console.log('Import completed, refreshing list...');
+        }}
+      />
 
       {/* Stats Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
